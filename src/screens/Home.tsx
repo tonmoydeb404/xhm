@@ -3,9 +3,10 @@ import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import RoomCard from '../common/components/RoomCard';
 import StatCard from '../common/components/StatCard';
+import {AppNavigationProps} from '../navigation/AppNavigation';
 import {MCIcon} from '../utils/Icons';
 
-export default function Home() {
+export default function Home({navigation}: AppNavigationProps<'Home'>) {
   return (
     <SafeAreaView>
       {/* Header Part */}
@@ -76,9 +77,24 @@ export default function Home() {
           marginHorizontal: 20,
           marginTop: 30,
         }}>
-        <RoomCard name="Living Room" devices={6} color={'#2F52E0'} />
-        <RoomCard name="Bed Room" devices={2} color={'#F3A712'} />
-        <RoomCard name="Dining Room" devices={1} color={'#E9190F'} />
+        <RoomCard
+          name="Living Room"
+          devices={6}
+          color={'#2F52E0'}
+          onPress={() => navigation.navigate('Room', {title: 'Living Room'})}
+        />
+        <RoomCard
+          name="Bed Room"
+          devices={2}
+          color={'#F3A712'}
+          onPress={() => navigation.navigate('Room', {title: 'Bed Room'})}
+        />
+        <RoomCard
+          name="Dining Room"
+          devices={1}
+          color={'#E9190F'}
+          onPress={() => navigation.navigate('Room', {title: 'Dining Room'})}
+        />
       </View>
     </SafeAreaView>
   );

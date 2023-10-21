@@ -1,16 +1,22 @@
 import {Avatar} from '@rneui/themed';
 import React from 'react';
-import {ColorValue, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  ColorValue,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 
 type Props = {
   name: string;
   devices: number;
   color: ColorValue;
-};
+} & Omit<TouchableOpacityProps, 'style' | 'activeOpacity'>;
 
-export default function RoomCard({name, devices, color}: Props) {
+export default function RoomCard({name, devices, color, ...rest}: Props) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.5}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.5} {...rest}>
       <Avatar
         size={50}
         icon={{type: 'font-awesome-5', name: 'door-open'}}

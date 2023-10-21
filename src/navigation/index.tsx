@@ -1,10 +1,6 @@
 import React from 'react';
-import ControlNavigation from './ControlNavigation';
+import AppNavigation from './AppNavigation';
 
 export default function MainNavigation() {
-  return (
-    <>
-      <ControlNavigation />
-    </>
-  );
+  return <AppNavigation />;
 }
