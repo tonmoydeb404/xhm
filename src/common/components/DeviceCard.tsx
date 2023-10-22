@@ -1,44 +1,34 @@
 import {Switch} from '@rneui/themed';
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-} from 'react-native';
-import {Icon} from '../../utils/Icons';
+import {StyleSheet, Text, View} from 'react-native';
+import {DeviceIcon, DeviceIconType} from '../../utils/Icons';
 
 type Props = {
   name: string;
   status: 'ON' | 'OFF';
-} & Omit<TouchableOpacityProps, 'style' | 'activeOpacity'>;
+  type: DeviceIconType;
+};
 
-export default function DeviceCard({name, status, ...rest}: Props) {
+export default function DeviceCard({name, status, type}: Props) {
   const [isOn, setIsOn] = useState(status === 'ON');
 
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.5} {...rest}>
+    <View style={styles.container}>
       <View style={[styles.icon, isOn ? styles.iconOn : {}]}>
-        <Icon
-          name="bulb-outline"
-          type="Ion"
-          size={40}
-          color={isOn ? '#fff' : '#000'}
-        />
+        <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
       </View>
       <Text style={styles.title} numberOfLines={1}>
         {name}
       </Text>
       <View style={styles.control}>
-        <Text style={styles.controlText}>{status}</Text>
+        <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
         <Switch
           value={isOn}
           trackColor={{false: '#ddd'}}
           onValueChange={setIsOn}
         />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 

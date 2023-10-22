@@ -74,7 +74,7 @@ export default function Home({navigation}: AppNavigationProps<'Home'>) {
         style={{
           flexDirection: 'row',
           flexWrap: 'wrap',
-          marginHorizontal: 20,
+          marginHorizontal: 16,
           marginTop: 30,
         }}>
         <RoomCard

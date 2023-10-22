@@ -37,9 +37,11 @@ export default function Room({navigation, route}: AppNavigationProps<'Room'>) {
           marginHorizontal: 20,
           marginTop: 30,
         }}>
-        <DeviceCard name="Light" status="OFF" />
-        <DeviceCard name="Fan" status="ON" />
-        <DeviceCard name="Light" status="OFF" />
+        <DeviceCard name="Light" status="OFF" type="LIGHT" />
+        <DeviceCard name="Fan" status="ON" type="FAN" />
+        <DeviceCard name="Ac" status="OFF" type="AC" />
+        <DeviceCard name="TV" status="OFF" type="TV" />
+        <DeviceCard name="Speaker" status="OFF" type="SOUND_SYSTEM" />
       </View>
     </>
   );
