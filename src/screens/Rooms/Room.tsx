@@ -2,11 +2,11 @@ import {Text} from '@rneui/base';
 import {Button} from '@rneui/themed';
 import React from 'react';
 import {View} from 'react-native';
-import DeviceCard from '../common/components/DeviceCard';
-import {AppNavigationProps} from '../navigation/AppNavigation';
-import {MCIcon} from '../utils/Icons';
+import DeviceCard from '../../common/components/DeviceCard';
+import {RoomNavProps} from '../../navigation/RoomNavigation';
+import {MCIcon} from '../../utils/Icons';
 
-export default function Room({navigation, route}: AppNavigationProps<'Room'>) {
+export default function Room({navigation, route}: RoomNavProps<'Room'>) {
   return (
     <>
       <View
@@ -17,7 +17,11 @@ export default function Room({navigation, route}: AppNavigationProps<'Room'>) {
           paddingHorizontal: 20,
           marginTop: 10,
         }}>
-        <Button type="clear" onPress={() => navigation.goBack()}>
+        <Button
+          type="clear"
+          onPress={() => {
+            navigation.goBack();
+          }}>
           <MCIcon name="keyboard-backspace" size={'xl'} />
         </Button>
 
