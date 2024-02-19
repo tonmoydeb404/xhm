@@ -22,7 +22,9 @@ export type RoomNavProps<k extends RoomNavKeys> = StackScreenProps<
 
 export default function RoomNavigation() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Rooms">
       <Stack.Screen name="Rooms" component={Rooms} />
       <Stack.Screen name="Room" component={Room} />
       <Stack.Screen name="CreateRoom" component={CreateRoom} />
