@@ -9,7 +9,8 @@ type Props = {
   iconType: IconType;
 };
 
-export default function StatCard({iconName, subtitle, title, iconType}: Props) {
+export default function StatCard(props: Props) {
+  const {iconName, subtitle, title, iconType} = props;
   return (
     <View style={styles.container}>
       <Icon name={iconName} type={iconType} size={'xl'} color={'#000'} />

@@ -1,7 +1,8 @@
 import {Button} from '@rneui/themed';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import DeviceCard from '../../components/cards/DeviceCard';
+import {Container} from '../../components/layout';
 import {DeviceNavProps} from '../../navigation/DeviceNavigation';
 import {MCIcon} from '../../utils/icons';
 
@@ -9,13 +10,12 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
   const {navigation, route} = props;
 
   return (
-    <>
-      <View
+    <SafeAreaView>
+      <Container
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          paddingHorizontal: 20,
           marginTop: 10,
         }}>
         <Button
@@ -28,14 +28,10 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
 
         <Text style={{fontSize: 16, fontWeight: 'bold'}}>Devices</Text>
 
-        <Button
-          type="clear"
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MCIcon name="keyboard-backspace" size={'xl'} />
+        <Button type="clear">
+          <MCIcon name="information-outline" size={'xl'} />
         </Button>
-      </View>
+      </Container>
 
       <View
         style={{
@@ -75,7 +71,7 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
           onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
         />
       </View>
-    </>
+    </SafeAreaView>
   );
 }
 
