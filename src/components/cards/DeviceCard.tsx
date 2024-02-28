@@ -21,7 +21,7 @@ export default function DeviceCard(props: Props) {
           <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
         </View>
         {!!onEdit && (
-          <Button onPress={onEdit}>
+          <Button onPress={onEdit} size="sm" type="clear" radius={'xl'}>
             <MCIcon name="cog-outline" />
           </Button>
         )}

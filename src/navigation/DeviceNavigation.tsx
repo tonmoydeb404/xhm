@@ -5,7 +5,7 @@ import UpdateDevice from '../screens/Devices/UpdateDevice';
 
 export type DeviceParamList = {
   Devices: undefined;
-  UpdateDevice: undefined;
+  UpdateDevice: {id: string};
 };
 
 const Stack = createStackNavigator<DeviceParamList>();

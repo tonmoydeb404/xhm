@@ -6,7 +6,7 @@ import {Container} from '../../components/layout';
 import {DeviceNavProps} from '../../navigation/DeviceNavigation';
 import {MCIcon} from '../../utils/icons';
 
-export default function UpdateDevice(props: DeviceNavProps<'Devices'>) {
+export default function UpdateDevice(props: DeviceNavProps<'UpdateDevice'>) {
   const {navigation, route} = props;
 
   return (

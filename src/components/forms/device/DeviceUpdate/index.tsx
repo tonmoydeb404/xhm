@@ -1,7 +1,7 @@
 import {Button} from '@rneui/themed';
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {RHFInput, RHFProvider, RHFSelect} from '../../common/rhf';
 
 export default function DeviceUpdateForm() {
@@ -17,7 +17,7 @@ export default function DeviceUpdateForm() {
 
   return (
     <RHFProvider methods={methods}>
-      <View>
+      <View style={styles.container}>
         <RHFInput name="title" inputProps={{label: 'Device Title'}} />
         <RHFSelect name="type" options={[{label: 'Light', value: 'LIGHT'}]} />
         <Button
@@ -29,3 +29,10 @@ export default function DeviceUpdateForm() {
     </RHFProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    gap: 5,
+  },
+});

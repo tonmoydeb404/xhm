@@ -27,6 +27,14 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
         </Button>
 
         <Text style={{fontSize: 16, fontWeight: 'bold'}}>Devices</Text>
+
+        <Button
+          type="clear"
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <MCIcon name="keyboard-backspace" size={'xl'} />
+        </Button>
       </View>
 
       <View
@@ -36,11 +44,36 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
           marginHorizontal: 20,
           marginTop: 30,
         }}>
-        <DeviceCard name="Light" status="OFF" type="LIGHT" onEdit={() => {}} />
-        <DeviceCard name="Fan" status="ON" type="FAN" />
-        <DeviceCard name="Ac" status="OFF" type="AC" />
-        <DeviceCard name="TV" status="OFF" type="TV" />
-        <DeviceCard name="Speaker" status="OFF" type="SOUND_SYSTEM" />
+        <DeviceCard
+          name="Light"
+          status="OFF"
+          type="LIGHT"
+          onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
+        />
+        <DeviceCard
+          name="Fan"
+          status="ON"
+          type="FAN"
+          onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
+        />
+        <DeviceCard
+          name="Ac"
+          status="OFF"
+          type="AC"
+          onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
+        />
+        <DeviceCard
+          name="TV"
+          status="OFF"
+          type="TV"
+          onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
+        />
+        <DeviceCard
+          name="Speaker"
+          status="OFF"
+          type="SOUND_SYSTEM"
+          onEdit={() => navigation.navigate('UpdateDevice', {id: 'test'})}
+        />
       </View>
     </>
   );

@@ -1,12 +1,14 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {ThemeProvider} from '@rneui/themed';
+import {ThemeProvider, createTheme} from '@rneui/themed';
 import React from 'react';
 import 'react-native-gesture-handler';
 import MainNavigation from './navigation';
 
+const theme = createTheme({mode: 'light'});
+
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <NavigationContainer>
         <MainNavigation />
       </NavigationContainer>
