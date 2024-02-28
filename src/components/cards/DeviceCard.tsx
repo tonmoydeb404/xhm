@@ -16,18 +16,20 @@ export default function DeviceCard(props: Props) {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.icon, isOn ? styles.iconOn : {}]}>
-        <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
-      </View>
-      <Text style={styles.title} numberOfLines={1}>
-        {name}
-      </Text>
-      <View style={styles.control}>
+      <View style={styles.header}>
+        <View style={[styles.icon, isOn ? styles.iconOn : {}]}>
+          <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
+        </View>
         {!!onEdit && (
           <Button onPress={onEdit}>
             <MCIcon name="cog-outline" />
           </Button>
         )}
+      </View>
+      <Text style={styles.title} numberOfLines={1}>
+        {name}
+      </Text>
+      <View style={styles.control}>
         <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
         <Switch
           value={isOn}
@@ -40,6 +42,12 @@ export default function DeviceCard(props: Props) {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
   icon: {
     backgroundColor: '#ddd',
     padding: 8,
