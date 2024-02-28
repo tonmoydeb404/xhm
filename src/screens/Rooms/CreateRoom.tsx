@@ -4,7 +4,7 @@ import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import {RoomCreateForm} from '../../components/forms/room';
 import {Container} from '../../components/layout';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
-import {MCIcon} from '../../utils/Icons';
+import {MCIcon} from '../../utils/icons';
 
 export default function CreateRoom(props: RoomNavProps<'CreateRoom'>) {
   const {navigation} = props;

@@ -4,7 +4,7 @@ import React from 'react';
 import {View} from 'react-native';
 import DeviceCard from '../../components/cards/DeviceCard';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
-import {MCIcon} from '../../utils/Icons';
+import {MCIcon} from '../../utils/icons';
 
 export default function Room({navigation, route}: RoomNavProps<'Room'>) {
   return (

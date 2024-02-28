@@ -1,15 +1,17 @@
-import {Switch} from '@rneui/themed';
+import {Button, Switch} from '@rneui/themed';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {DeviceIcon, DeviceIconType} from '../../utils/Icons';
+import {DeviceIcon, DeviceIconType, MCIcon} from '../../utils/icons';
 
 type Props = {
   name: string;
   status: 'ON' | 'OFF';
   type: DeviceIconType;
+  onEdit?: () => any;
 };
 
-export default function DeviceCard({name, status, type}: Props) {
+export default function DeviceCard(props: Props) {
+  const {name, status, type, onEdit} = props;
   const [isOn, setIsOn] = useState(status === 'ON');
 
   return (
@@ -21,6 +23,11 @@ export default function DeviceCard({name, status, type}: Props) {
         {name}
       </Text>
       <View style={styles.control}>
+        {!!onEdit && (
+          <Button onPress={onEdit}>
+            <MCIcon name="cog-outline" />
+          </Button>
+        )}
         <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
         <Switch
           value={isOn}

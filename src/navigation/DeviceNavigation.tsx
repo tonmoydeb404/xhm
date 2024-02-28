@@ -1,12 +1,10 @@
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Devices from '../screens/Devices';
-import CreateDevice from '../screens/Devices/CreateDevice';
 import UpdateDevice from '../screens/Devices/UpdateDevice';
 
 export type DeviceParamList = {
   Devices: undefined;
-  CreateDevice: undefined;
   UpdateDevice: undefined;
 };
 
@@ -22,7 +20,6 @@ export default function DeviceNavigation() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Devices" component={Devices} />
-      <Stack.Screen name="CreateDevice" component={CreateDevice} />
       <Stack.Screen name="UpdateDevice" component={UpdateDevice} />
     </Stack.Navigator>
   );

@@ -5,7 +5,7 @@ import {
 import {NavigatorScreenParams} from '@react-navigation/native';
 import React from 'react';
 import Home from '../screens/Home';
-import {Icon} from '../utils/Icons';
+import {Icon} from '../utils/icons';
 import DeviceNavigation, {DeviceParamList} from './DeviceNavigation';
 import RoomNavigation, {RoomParamList} from './RoomNavigation';
 import UserNavigation, {UserParamList} from './UserNavigation';

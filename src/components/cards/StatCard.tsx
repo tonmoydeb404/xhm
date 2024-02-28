@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Icon, IconType} from '../../utils/Icons';
+import {Icon, IconType} from '../../utils/icons';
 
 type Props = {
   title: string;

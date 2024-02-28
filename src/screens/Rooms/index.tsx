@@ -3,7 +3,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import RoomCard from '../../components/cards/RoomCard';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
-import {Icon} from '../../utils/Icons';
+import {Icon} from '../../utils/icons';
 
 export default function Rooms({navigation}: RoomNavProps<'Rooms'>) {
   return (

@@ -4,7 +4,7 @@ import {SafeAreaView, View} from 'react-native';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {AppNavProps} from '../navigation/AppNavigation';
-import {MCIcon} from '../utils/Icons';
+import {MCIcon} from '../utils/icons';
 
 export default function Home({navigation}: AppNavProps<'Home'>) {
   return (
