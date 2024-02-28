@@ -2,7 +2,7 @@ import {Text} from '@rneui/base';
 import {Button} from '@rneui/themed';
 import React from 'react';
 import {View} from 'react-native';
-import DeviceCard from '../../common/components/DeviceCard';
+import DeviceCard from '../../components/cards/DeviceCard';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
 import {MCIcon} from '../../utils/Icons';
 
@@ -29,7 +29,10 @@ export default function Room({navigation, route}: RoomNavProps<'Room'>) {
           {route.params.title}
         </Text>
 
-        <Button type="clear" color={'warning'}>
+        <Button
+          type="clear"
+          color={'warning'}
+          onPress={() => navigation.navigate('UpdateRoom')}>
           <MCIcon name="square-edit-outline" size={'xl'} />
         </Button>
       </View>

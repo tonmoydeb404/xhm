@@ -1,7 +1,7 @@
 import {Button, Text} from '@rneui/themed';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import RoomCard from '../../common/components/RoomCard';
+import RoomCard from '../../components/cards/RoomCard';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
 import {Icon} from '../../utils/Icons';
 
@@ -17,7 +17,10 @@ export default function Rooms({navigation}: RoomNavProps<'Rooms'>) {
           marginTop: 10,
         }}>
         <Text h4>Rooms</Text>
-        <Button type="outline" size="sm">
+        <Button
+          type="outline"
+          size="sm"
+          onPress={() => navigation.navigate('CreateRoom')}>
           Add New&nbsp;
           <Icon type="MaterialCommunity" name="plus" size={'md'} />
         </Button>

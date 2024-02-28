@@ -1,8 +1,8 @@
 import {Avatar, Button} from '@rneui/themed';
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
-import RoomCard from '../common/components/RoomCard';
-import StatCard from '../common/components/StatCard';
+import RoomCard from '../components/cards/RoomCard';
+import StatCard from '../components/cards/StatCard';
 import {AppNavProps} from '../navigation/AppNavigation';
 import {MCIcon} from '../utils/Icons';
 
