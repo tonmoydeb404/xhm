@@ -18,7 +18,7 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
           paddingHorizontal: 20,
           marginTop: 10,
         }}>
-        <Button type="clear" color={'error'}>
+        <Button type="clear" color={'error'} onPress={navigation.toggleDrawer}>
           <MCIcon name="view-grid" size={'xl'} />
         </Button>
         <Avatar

@@ -2,8 +2,12 @@ import {
   BottomTabScreenProps,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import {NavigatorScreenParams} from '@react-navigation/native';
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import React from 'react';
+import {MainNavProps} from '.';
 import Home from '../screens/Home';
 import {Icon} from '../utils/icons';
 import DeviceNavigation, {DeviceParamList} from './DeviceNavigation';
@@ -20,9 +24,9 @@ type ParamList = {
 const Tab = createBottomTabNavigator<ParamList>();
 
 export type AppNavKeys = keyof ParamList;
-export type AppNavProps<k extends AppNavKeys> = BottomTabScreenProps<
-  ParamList,
-  k
+export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
+  BottomTabScreenProps<ParamList, k>,
+  MainNavProps<'App'>
 >;
 
 export default function AppNavigation() {
