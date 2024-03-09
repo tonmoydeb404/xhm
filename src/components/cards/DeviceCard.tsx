@@ -1,6 +1,7 @@
 import {Button, Switch} from '@rneui/themed';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Card, Square, Text, XStack} from 'tamagui';
 import {DeviceIcon, DeviceIconType, MCIcon} from '../../utils/icons';
 
 type Props = {
@@ -15,76 +16,42 @@ export default function DeviceCard(props: Props) {
   const [isOn, setIsOn] = useState(status === 'ON');
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={[styles.icon, isOn ? styles.iconOn : {}]}>
-          <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
-        </View>
-        {!!onEdit && (
-          <Button onPress={onEdit} size="sm" type="clear" radius={'xl'}>
-            <MCIcon name="cog-outline" />
-          </Button>
-        )}
-      </View>
-      <Text style={styles.title} numberOfLines={1}>
-        {name}
-      </Text>
-      <View style={styles.control}>
+    <Card animation={'bouncy'} style={{flex: 1}}>
+      <Card.Header>
+        <XStack justifyContent="space-between">
+          <Square style={{backgroundColor: isOn ? '#2F52E0' : '#ddd'}}>
+            <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
+          </Square>
+          {!!onEdit && (
+            <Button onPress={onEdit} size="sm" type="clear" radius={'xl'}>
+              <MCIcon name="cog-outline" />
+            </Button>
+          )}
+        </XStack>
+        <Text style={styles.title} numberOfLines={1}>
+          {name}
+        </Text>
+      </Card.Header>
+      <Card.Footer>
         <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
         <Switch
           value={isOn}
           trackColor={{false: '#ddd'}}
           onValueChange={setIsOn}
         />
-      </View>
-    </View>
+      </Card.Footer>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  icon: {
-    backgroundColor: '#ddd',
-    padding: 8,
-    borderRadius: 8,
-  },
-  iconOn: {
-    backgroundColor: '#2F52E0',
-  },
   title: {
-    color: '#000',
     fontWeight: 'bold',
     fontSize: 14,
     marginTop: 5,
     marginBottom: 15,
   },
-  container: {
-    width: '47%',
-    marginHorizontal: '1.5%',
-    marginBottom: 10,
 
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-
-    elevation: 2,
-    shadowColor: '#333',
-  },
-
-  control: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   controlText: {
     fontSize: 12,
     color: '#666',

@@ -21,7 +21,10 @@ export type MainNavProps<k extends MainNavKeys> = DrawerScreenProps<
 
 export default function MainNavigation() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Drawer.Screen name="App" component={AppNavigation} />
       <Drawer.Screen name="ConnectHome" component={ConnectHome} />
     </Drawer.Navigator>

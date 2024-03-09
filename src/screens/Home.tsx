@@ -1,10 +1,36 @@
 import {Avatar, Button} from '@rneui/themed';
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {FlatGrid} from 'react-native-super-grid';
+import {Card, View} from 'tamagui';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
+import {Container} from '../components/layout';
 import {AppNavProps} from '../navigation/AppNavigation';
 import {MCIcon} from '../utils/icons';
+
+const rooms = [
+  {
+    id: '1',
+    title: 'Living Room',
+    devices: 6,
+  },
+  {
+    id: '2',
+    title: 'Living Room',
+    devices: 6,
+  },
+  {
+    id: '3',
+    title: 'Living Room',
+    devices: 6,
+  },
+  {
+    id: '4',
+    title: 'Living Room',
+    devices: 6,
+  },
+];
 
 export default function Home({navigation}: AppNavProps<'Home'>) {
   return (
@@ -30,19 +56,16 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
       </View>
 
       {/* Monitor Part */}
-      <View
+      <Card
         style={{
           flexDirection: 'row',
           flexWrap: 'wrap',
           marginHorizontal: 20,
           padding: 20,
-          backgroundColor: '#fff',
+
           borderRadius: 10,
           marginTop: 30,
           rowGap: 20,
-
-          elevation: 2,
-          shadowColor: '#333',
         }}>
         <StatCard
           title="23 C"
@@ -68,52 +91,33 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
           iconName="weather-rainy"
           iconType="MaterialCommunity"
         />
-      </View>
+      </Card>
 
-      <View
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginHorizontal: 16,
-          marginTop: 30,
-        }}>
-        <RoomCard
-          name="Living Room"
-          devices={6}
-          color={'#2F52E0'}
-          onPress={() =>
-            navigation.navigate('AppRooms', {
-              screen: 'Room',
-              initial: false,
-              params: {title: 'Living Room'},
-            })
-          }
+      <Container>
+        <FlatGrid
+          data={rooms}
+          fixed={false}
+          renderItem={({item}) => (
+            <RoomCard
+              name={item.title}
+              devices={item.devices}
+              key={item.id}
+              color={'#2F52E0'}
+              containerProps={{
+                onPress: () =>
+                  navigation.navigate('AppRooms', {
+                    screen: 'Room',
+                    params: {title: item.title},
+                  }),
+              }}
+            />
+          )}
+          maxItemsPerRow={2}
+          keyExtractor={item => item.id}
+          spacing={8}
+          style={{width: '100%'}}
         />
-        <RoomCard
-          name="Bed Room"
-          devices={2}
-          color={'#F3A712'}
-          onPress={() =>
-            navigation.navigate('AppRooms', {
-              screen: 'Room',
-              initial: false,
-              params: {title: 'Bed Room'},
-            })
-          }
-        />
-        <RoomCard
-          name="Dining Room"
-          devices={1}
-          color={'#E9190F'}
-          onPress={() =>
-            navigation.navigate('AppRooms', {
-              screen: 'Room',
-              initial: false,
-              params: {title: 'Dining Room'},
-            })
-          }
-        />
-      </View>
+      </Container>
     </SafeAreaView>
   );
 }

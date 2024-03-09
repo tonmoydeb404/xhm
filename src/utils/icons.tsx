@@ -3,6 +3,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome6';
 import Ion from 'react-native-vector-icons/Ionicons';
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import Material from 'react-native-vector-icons/MaterialIcons';
+import {Text} from 'tamagui';
 
 const iconsLib = {
   MaterialCommunity,
@@ -32,9 +33,13 @@ export type IconProps = {
 export const Icon = ({size = 'lg', type, ...rest}: IconProps) => {
   const IconType = iconsLib[type];
   return (
-    <IconType
-      size={typeof size === 'string' ? iconSizes[size] : size}
-      {...rest}
+    <Text
+      children={
+        <IconType
+          size={typeof size === 'string' ? iconSizes[size] : size}
+          {...rest}
+        />
+      }
     />
   );
 };

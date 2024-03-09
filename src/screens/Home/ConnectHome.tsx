@@ -89,7 +89,7 @@ export default function ConnectHome({navigation}: MainNavProps<'ConnectHome'>) {
               codeScanner={codeScanner}
               onTouchEnd={() => setActive(true)}
               torch={torch ? 'on' : 'off'}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           </View>
 

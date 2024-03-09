@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, XStack, YStack} from 'tamagui';
 import {Icon, IconType} from '../../utils/icons';
 
 type Props = {
@@ -12,30 +12,14 @@ type Props = {
 export default function StatCard(props: Props) {
   const {iconName, subtitle, title, iconType} = props;
   return (
-    <View style={styles.container}>
-      <Icon name={iconName} type={iconType} size={'xl'} color={'#000'} />
-      <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
-      </View>
-    </View>
+    <XStack width={'50%'} columnGap={10} alignItems="center">
+      <Icon name={iconName} type={iconType} size={'xl'} />
+      <YStack>
+        <Text fontSize={14} fontWeight={'bold'}>
+          {title}
+        </Text>
+        <Text fontSize={11}>{subtitle}</Text>
+      </YStack>
+    </XStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    width: '50%',
-  },
-  subtitle: {
-    color: '#000',
-    fontSize: 12,
-  },
-  title: {
-    color: '#000',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-});
