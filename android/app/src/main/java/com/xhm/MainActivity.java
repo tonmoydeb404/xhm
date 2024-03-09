@@ -1,18 +1,13 @@
 package com.xhm;
 
-import android.os.Bundle;
+import android.os.Bundle; // SPLASH SCREEN
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen; // SPLASH SCREEN
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
 public class MainActivity extends ReactActivity {
-
-  // React native navigation
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
-  }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
@@ -22,6 +17,13 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "xhm";
   }
+
+// React native navigation
+  @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  // here
+        super.onCreate(savedInstanceState);
+    }
 
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. Here we use a util class {@link
