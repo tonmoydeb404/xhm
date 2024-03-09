@@ -1,6 +1,6 @@
-import {Button} from '@rneui/themed';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Button, H4} from 'tamagui';
 import {RoomCreateForm} from '../../components/forms/room';
 import {Container} from '../../components/layout';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
@@ -19,18 +19,14 @@ export default function CreateRoom(props: RoomNavProps<'CreateRoom'>) {
           marginTop: 10,
           marginBottom: 30,
         }}>
-        <Button
-          type="clear"
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MCIcon name="keyboard-backspace" size={'xl'} />
+        <Button onPress={() => navigation.goBack()} size="$2.5">
+          <MCIcon name="keyboard-backspace" />
         </Button>
 
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Create Room</Text>
+        <H4 style={{fontSize: 16, fontWeight: 'bold'}}>Create Room</H4>
 
-        <Button type="clear" color={'warning'}>
-          <MCIcon name="content-save-outline" size={'xl'} />
+        <Button size="$2.5">
+          <MCIcon name="content-save-outline" />
         </Button>
       </Container>
 

@@ -14,7 +14,13 @@ export default function RoomCard(props: Props) {
   const {name, devices, color, containerProps = {}} = props;
 
   return (
-    <Card style={{flex: 1}} {...containerProps}>
+    <Card
+      animation={'bouncy'}
+      pressStyle={{scale: 0.95}}
+      enterStyle={{scale: 0.9}}
+      exitStyle={{scale: 0.85}}
+      style={{flex: 1}}
+      {...containerProps}>
       <Card.Header alignItems="center">
         <Avatar
           size={50}

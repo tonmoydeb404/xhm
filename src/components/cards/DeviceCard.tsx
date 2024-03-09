@@ -16,30 +16,35 @@ export default function DeviceCard(props: Props) {
   const [isOn, setIsOn] = useState(status === 'ON');
 
   return (
-    <Card animation={'bouncy'} style={{flex: 1}}>
+    <Card
+      animation={'bouncy'}
+      enterStyle={{scale: 0.9}}
+      exitStyle={{scale: 0.85}}
+      style={{flex: 1}}>
       <Card.Header>
-        <XStack justifyContent="space-between">
-          <Square style={{backgroundColor: isOn ? '#2F52E0' : '#ddd'}}>
-            <DeviceIcon type={type} size={40} color={isOn ? '#fff' : '#000'} />
+        <XStack justifyContent="space-between" mb={5}>
+          <Square backgroundColor={isOn ? '#2F52E0' : '#ddd'} p={5} radiused>
+            <DeviceIcon type={type} size={36} color={isOn ? '#fff' : '#000'} />
           </Square>
+
           {!!onEdit && (
             <Button onPress={onEdit} size="sm" type="clear" radius={'xl'}>
               <MCIcon name="cog-outline" />
             </Button>
           )}
         </XStack>
-        <Text style={styles.title} numberOfLines={1}>
+        <Text fontWeight={'bold'} fontSize={'$5'} numberOfLines={1} mb={10}>
           {name}
         </Text>
+        <XStack alignItems="center" justifyContent="flex-end">
+          <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
+          <Switch
+            value={isOn}
+            trackColor={{false: '#ddd'}}
+            onValueChange={setIsOn}
+          />
+        </XStack>
       </Card.Header>
-      <Card.Footer>
-        <Text style={styles.controlText}>{isOn ? 'ON' : 'OFF'}</Text>
-        <Switch
-          value={isOn}
-          trackColor={{false: '#ddd'}}
-          onValueChange={setIsOn}
-        />
-      </Card.Footer>
     </Card>
   );
 }

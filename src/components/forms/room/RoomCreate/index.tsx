@@ -1,14 +1,13 @@
-import {Button} from '@rneui/themed';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {View} from 'react-native';
+import {Button} from 'tamagui';
 import {RHFInput, RHFProvider} from '../../common/rhf';
 
 export default function RoomCreateForm() {
   // form state
   const methods = useForm();
   const {formState, handleSubmit} = methods;
-  const {isSubmitting} = formState;
 
   // handle create room
   const handleCreateRoom = (values: {}) => {
@@ -19,9 +18,7 @@ export default function RoomCreateForm() {
     <RHFProvider methods={methods}>
       <View>
         <RHFInput name="title" inputProps={{label: 'Room Title'}} />
-        <Button loading={isSubmitting} onPress={handleSubmit(handleCreateRoom)}>
-          Create New
-        </Button>
+        <Button onPress={handleSubmit(handleCreateRoom)}>Create New</Button>
       </View>
     </RHFProvider>
   );

@@ -1,28 +1,50 @@
-import {Text} from '@rneui/base';
-import {Button} from '@rneui/themed';
 import React from 'react';
-import {View} from 'react-native';
+import {SafeAreaView} from 'react-native';
+import {FlatGrid} from 'react-native-super-grid';
+import {Button, Text, XStack} from 'tamagui';
 import DeviceCard from '../../components/cards/DeviceCard';
+import {Container} from '../../components/layout';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
 import {MCIcon} from '../../utils/icons';
 
+const devices = [
+  {
+    id: '1',
+    title: 'Light',
+    type: 'LIGHT',
+    status: 'ON',
+  },
+  {
+    id: '2',
+    title: 'Fan',
+    type: 'FAN',
+    status: 'OFF',
+  },
+  {
+    id: '3',
+    title: 'AC',
+    type: 'AC',
+    status: 'ON',
+  },
+  {
+    id: '4',
+    title: 'TV',
+    type: 'TV',
+    status: 'ON',
+  },
+];
+
 export default function Room({navigation, route}: RoomNavProps<'Room'>) {
   return (
-    <>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingHorizontal: 20,
-          marginTop: 10,
-        }}>
-        <Button
-          type="clear"
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MCIcon name="keyboard-backspace" size={'xl'} />
+    <SafeAreaView>
+      <XStack
+        alignItems="center"
+        justifyContent="space-between"
+        px={20}
+        mt={10}
+        mb={10}>
+        <Button size={'$3'} onPress={() => navigation.navigate('Rooms')}>
+          <MCIcon name="keyboard-backspace" />
         </Button>
 
         <Text style={{fontSize: 16, fontWeight: 'bold'}}>
@@ -30,26 +52,31 @@ export default function Room({navigation, route}: RoomNavProps<'Room'>) {
         </Text>
 
         <Button
-          type="clear"
-          color={'warning'}
+          variant="outlined"
+          size={'$2.5'}
           onPress={() => navigation.navigate('UpdateRoom')}>
-          <MCIcon name="square-edit-outline" size={'xl'} />
+          <MCIcon name="square-edit-outline" />
         </Button>
-      </View>
+      </XStack>
 
-      <View
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginHorizontal: 20,
-          marginTop: 30,
-        }}>
-        <DeviceCard name="Light" status="OFF" type="LIGHT" />
-        <DeviceCard name="Fan" status="ON" type="FAN" />
-        <DeviceCard name="Ac" status="OFF" type="AC" />
-        <DeviceCard name="TV" status="OFF" type="TV" />
-        <DeviceCard name="Speaker" status="OFF" type="SOUND_SYSTEM" />
-      </View>
-    </>
+      <Container>
+        <FlatGrid
+          data={devices}
+          fixed={false}
+          renderItem={({item}) => (
+            <DeviceCard
+              name={item.title}
+              status={item.status as any}
+              key={item.id}
+              type={item.type as any}
+            />
+          )}
+          maxItemsPerRow={2}
+          keyExtractor={item => item.id}
+          spacing={8}
+          style={{width: '100%'}}
+        />
+      </Container>
+    </SafeAreaView>
   );
 }
