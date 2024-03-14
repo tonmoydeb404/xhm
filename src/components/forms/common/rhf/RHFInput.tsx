@@ -1,11 +1,10 @@
-import {InputProps} from '@rneui/base';
-import {Input} from '@rneui/themed';
+import {TextInput, TextInputProps} from '@/ui';
 import React from 'react';
 import {Controller, useFormContext} from 'react-hook-form';
 
 type Props = {
   name: string;
-  inputProps: InputProps;
+  inputProps: TextInputProps;
 };
 
 export default function RHFInput(props: Props) {
@@ -19,10 +18,10 @@ export default function RHFInput(props: Props) {
       name={name}
       control={control}
       render={({field, fieldState}) => (
-        <Input
+        <TextInput
           onChangeText={t => field.onChange(t)}
           value={field.value}
-          errorMessage={fieldState?.error?.message}
+          error={!!fieldState?.error?.message}
           {...inputProps}
         />
       )}

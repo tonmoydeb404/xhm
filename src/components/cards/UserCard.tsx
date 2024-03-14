@@ -1,6 +1,6 @@
-import {Avatar, Card, Text} from '@rneui/themed';
+import {Avatar, Card} from '@/ui';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 type Props = {
   firstName: string;
@@ -13,14 +13,8 @@ export default function UserCard(props: Props) {
   const {avatar, email, firstName, lastName} = props;
 
   return (
-    <Card wrapperStyle={styles.container}>
-      <Avatar
-        size={52}
-        rounded
-        source={avatar ? {uri: avatar} : undefined}
-        icon={avatar ? undefined : {name: 'pencil', type: 'font-awesome'}}
-        containerStyle={avatar ? undefined : {backgroundColor: 'blue'}}
-      />
+    <Card style={styles.container}>
+      <Avatar.Text label="XD"></Avatar.Text>
       <View>
         <Text style={styles.title}>
           {firstName} {lastName}

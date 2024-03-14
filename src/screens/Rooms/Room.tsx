@@ -1,11 +1,12 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {Button, Text, XStack} from 'tamagui';
-import DeviceCard from '../../components/cards/DeviceCard';
-import {Container} from '../../components/layout';
-import {RoomNavProps} from '../../navigation/RoomNavigation';
-import {MCIcon} from '../../utils/icons';
+
+import {DeviceCard} from '@/components/cards';
+import {AppBar, Container} from '@/components/layout';
+import {RoomNavProps} from '@/navigation/RoomNavigation';
+import {Button} from '@/ui';
+import {MCIcon} from '@/utils/icons';
 
 const devices = [
   {
@@ -37,27 +38,14 @@ const devices = [
 export default function Room({navigation, route}: RoomNavProps<'Room'>) {
   return (
     <SafeAreaView>
-      <XStack
-        alignItems="center"
-        justifyContent="space-between"
-        px={20}
-        mt={10}
-        mb={10}>
-        <Button size={'$3'} onPress={() => navigation.navigate('Rooms')}>
-          <MCIcon name="keyboard-backspace" />
-        </Button>
-
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-          {route.params.title}
-        </Text>
-
-        <Button
-          variant="outlined"
-          size={'$2.5'}
-          onPress={() => navigation.navigate('UpdateRoom')}>
-          <MCIcon name="square-edit-outline" />
-        </Button>
-      </XStack>
+      <AppBar
+        title={route.params.title}
+        action={
+          <Button onPress={() => navigation.navigate('UpdateRoom')}>
+            <MCIcon name="square-edit-outline" />
+          </Button>
+        }
+      />
 
       <Container>
         <FlatGrid

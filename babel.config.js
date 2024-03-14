@@ -1,7 +1,20 @@
-const presets = ['module:metro-react-native-babel-preset'];
-const plugins = ['react-native-reanimated/plugin', 'module-resolver'];
-
 module.exports = {
-  presets,
-  plugins,
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: [
+    [
+      require.resolve('babel-plugin-module-resolver'),
+      {
+        root: ['.'],
+        alias: {
+          '@': './src',
+        },
+      },
+    ],
+    'react-native-reanimated/plugin',
+  ],
+  env: {
+    production: {
+      plugins: ['react-native-paper/babel'],
+    },
+  },
 };

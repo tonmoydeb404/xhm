@@ -1,4 +1,4 @@
-import {Button} from '@rneui/themed';
+import {Button} from '@/ui';
 import React, {useEffect, useState} from 'react';
 import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {
@@ -61,7 +61,7 @@ export default function ConnectHome({navigation}: MainNavProps<'ConnectHome'>) {
     return (
       <SafeAreaView style={{flex: 1}}>
         <Container style={{flexDirection: 'row', marginTop: 10}}>
-          <Button type="clear" onPress={() => navigation.goBack()}>
+          <Button onPress={() => navigation.goBack()}>
             <MCIcon name="keyboard-backspace" size={'xl'} />
           </Button>
         </Container>

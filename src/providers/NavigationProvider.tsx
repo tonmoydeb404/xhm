@@ -1,10 +1,15 @@
 import {
-  DarkTheme,
-  DefaultTheme,
   NavigationContainer,
+  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native';
 import React, {ReactNode} from 'react';
-import {useThemeName} from 'tamagui';
+import {adaptNavigationTheme, useTheme} from 'react-native-paper';
+
+const {LightTheme, DarkTheme} = adaptNavigationTheme({
+  reactNavigationLight: NavigationDefaultTheme,
+  reactNavigationDark: NavigationDarkTheme,
+});
 
 type Props = {
   children: ReactNode;
@@ -12,9 +17,10 @@ type Props = {
 
 const NavigationProvider = (props: Props) => {
   const {children} = props;
-  const theme = useThemeName();
+  const theme = useTheme();
+
   return (
-    <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+    <NavigationContainer theme={theme.dark ? DarkTheme : LightTheme}>
       {children}
     </NavigationContainer>
   );

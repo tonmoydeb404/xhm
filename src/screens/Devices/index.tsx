@@ -1,8 +1,8 @@
-import {Button} from '@rneui/themed';
+import {AppBar} from '@/components/layout';
+import {Button} from '@/ui';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import DeviceCard from '../../components/cards/DeviceCard';
-import {Container} from '../../components/layout';
 import {DeviceNavProps} from '../../navigation/DeviceNavigation';
 import {MCIcon} from '../../utils/icons';
 
@@ -11,27 +11,14 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
 
   return (
     <SafeAreaView>
-      <Container
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: 10,
-        }}>
-        <Button
-          type="clear"
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MCIcon name="keyboard-backspace" size={'xl'} />
-        </Button>
-
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Devices</Text>
-
-        <Button type="clear">
-          <MCIcon name="information-outline" size={'xl'} />
-        </Button>
-      </Container>
+      <AppBar
+        title="Devices"
+        action={
+          <Button>
+            <MCIcon name="information-outline" size={'xl'} />
+          </Button>
+        }
+      />
 
       <View
         style={{

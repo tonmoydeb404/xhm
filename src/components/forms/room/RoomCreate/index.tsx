@@ -1,7 +1,8 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {View} from 'react-native';
-import {Button} from 'tamagui';
+
+import {Button} from '@/ui';
 import {RHFInput, RHFProvider} from '../../common/rhf';
 
 export default function RoomCreateForm() {

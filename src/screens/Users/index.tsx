@@ -1,49 +1,25 @@
-import {Button} from '@rneui/themed';
+import {UserCard} from '@/components/cards';
+import {AppBar, Container} from '@/components/layout';
+import {UserNavProps} from '@/navigation/UserNavigation';
+import {Button} from '@/ui';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {UserCard} from '../../components/cards';
-import {Container} from '../../components/layout';
-import {UserNavProps} from '../../navigation/UserNavigation';
-import {MCIcon} from '../../utils/icons';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 export default function Users(props: UserNavProps<'Users'>) {
   const {navigation} = props;
 
   return (
     <SafeAreaView>
-      <Container
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: 10,
-        }}>
-        <Button
-          type="clear"
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <MCIcon name="keyboard-backspace" size={'xl'} />
-        </Button>
+      <AppBar
+        title={'Users'}
+        action={
+          <Button onPress={() => navigation.navigate('AddUser')}>Add</Button>
+        }
+      />
 
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Users</Text>
-
-        <Button
-          type="outline"
-          onPress={() => navigation.navigate('AddUser')}
-          icon={<MCIcon name="plus" />}
-          iconRight
-          size="sm">
-          Add
-        </Button>
-      </Container>
-
-      <View
-        style={{
-          flexDirection: 'column',
-        }}>
+      <Container>
         <UserCard firstName="Jhon" lastName="Doe" email="jhondoe@mail.com" />
-      </View>
+      </Container>
     </SafeAreaView>
   );
 }

@@ -1,5 +1,6 @@
+import {XStack, YStack} from '@/ui';
 import React from 'react';
-import {Text, XStack, YStack} from 'tamagui';
+import {Text} from 'react-native';
 import {Icon, IconType} from '../../utils/icons';
 
 type Props = {
@@ -12,13 +13,11 @@ type Props = {
 export default function StatCard(props: Props) {
   const {iconName, subtitle, title, iconType} = props;
   return (
-    <XStack width={'50%'} columnGap={10} alignItems="center">
+    <XStack>
       <Icon name={iconName} type={iconType} size={'xl'} />
       <YStack>
-        <Text fontSize={14} fontWeight={'bold'}>
-          {title}
-        </Text>
-        <Text fontSize={11}>{subtitle}</Text>
+        <Text>{title}</Text>
+        <Text>{subtitle}</Text>
       </YStack>
     </XStack>
   );

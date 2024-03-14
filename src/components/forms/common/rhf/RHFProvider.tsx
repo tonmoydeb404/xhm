@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react';
 import {FieldValues, FormProvider, UseFormReturn} from 'react-hook-form';
 
 type Props = {
-  methods: UseFormReturn<FieldValues, any, FieldValues>;
+  methods: UseFormReturn<FieldValues, any, FieldValues | undefined>;
   children: ReactNode;
 };
 

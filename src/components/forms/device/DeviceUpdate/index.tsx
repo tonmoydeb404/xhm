@@ -1,4 +1,4 @@
-import {Button} from '@rneui/themed';
+import {Button} from '@/ui';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {StyleSheet, View} from 'react-native';

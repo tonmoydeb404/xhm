@@ -1,9 +1,8 @@
-import {ColorValue} from 'react-native';
+import {ColorValue, Text} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome6';
 import Ion from 'react-native-vector-icons/Ionicons';
 import MaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import Material from 'react-native-vector-icons/MaterialIcons';
-import {Text} from 'tamagui';
 
 const iconsLib = {
   MaterialCommunity,

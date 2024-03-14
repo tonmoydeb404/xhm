@@ -1,40 +1,28 @@
-import {Avatar} from '@rneui/themed';
+import {Avatar, Card} from '@/ui';
 import React from 'react';
-import {ColorValue, StyleSheet} from 'react-native';
-import {Card, CardProps, Text} from 'tamagui';
+import {ColorValue, StyleSheet, Text} from 'react-native';
 
 type Props = {
   name: string;
   devices: number;
   color: ColorValue;
-  containerProps?: CardProps;
+  containerProps?: Record<string, any>;
 };
 
 export default function RoomCard(props: Props) {
   const {name, devices, color, containerProps = {}} = props;
 
   return (
-    <Card
-      animation={'bouncy'}
-      pressStyle={{scale: 0.95}}
-      enterStyle={{scale: 0.9}}
-      exitStyle={{scale: 0.85}}
-      style={{flex: 1}}
-      {...containerProps}>
-      <Card.Header alignItems="center">
-        <Avatar
-          size={50}
-          icon={{type: 'font-awesome-5', name: 'door-open'}}
-          containerStyle={{backgroundColor: color}}
-          rounded
-        />
+    <Card style={{flex: 1}} {...containerProps}>
+      <Card.Content>
+        <Avatar.Text label="XD"></Avatar.Text>
         <Text style={styles.title} numberOfLines={1}>
           {name}
         </Text>
-        <Text style={styles.subtitle} color={'$gray11'}>
+        <Text style={styles.subtitle}>
           {devices} {devices > 1 ? 'devices' : 'device'}
         </Text>
-      </Card.Header>
+      </Card.Content>
     </Card>
   );
 }

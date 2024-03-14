@@ -1,8 +1,8 @@
-import {Avatar, Button} from '@rneui/themed';
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {Card, View} from 'tamagui';
+
+import {Button, Card} from '@/ui';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
@@ -36,24 +36,17 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
   return (
     <SafeAreaView>
       {/* Header Part */}
-      <View
+      <Container
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          paddingHorizontal: 20,
           marginTop: 10,
         }}>
-        <Button type="clear" color={'error'} onPress={navigation.toggleDrawer}>
+        <Button onPress={navigation.toggleDrawer}>
           <MCIcon name="view-grid" size={'xl'} />
         </Button>
-        <Avatar
-          size={35}
-          icon={{type: 'material-icons', name: 'person'}}
-          containerStyle={{backgroundColor: '#9700b9'}}
-          rounded
-        />
-      </View>
+      </Container>
 
       {/* Monitor Part */}
       <Card

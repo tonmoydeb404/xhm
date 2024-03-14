@@ -1,7 +1,6 @@
-import {Button} from '@rneui/themed';
+import {Button, YStack} from '@/ui';
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {View} from 'react-native';
 import {RHFInput, RHFProvider} from '../../common/rhf';
 
 export default function RoomUpdateForm() {
@@ -17,12 +16,12 @@ export default function RoomUpdateForm() {
 
   return (
     <RHFProvider methods={methods}>
-      <View>
+      <YStack>
         <RHFInput name="title" inputProps={{label: 'Room Title'}} />
         <Button loading={isSubmitting} onPress={handleSubmit(handleCreateRoom)}>
-          Create New
+          Update
         </Button>
-      </View>
+      </YStack>
     </RHFProvider>
   );
 }

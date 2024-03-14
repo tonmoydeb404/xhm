@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
-import {Button, H4, XStack} from 'tamagui';
-import RoomCard from '../../components/cards/RoomCard';
-import {Container} from '../../components/layout';
-import {RoomNavProps} from '../../navigation/RoomNavigation';
-import {Icon} from '../../utils/icons';
+
+import {RoomCard} from '@/components/cards';
+import {AppBar, Container} from '@/components/layout';
+import {RoomNavProps} from '@/navigation/RoomNavigation';
+import {Button} from '@/ui';
 
 const rooms = [
   {
@@ -33,20 +33,14 @@ const rooms = [
 export default function Rooms({navigation}: RoomNavProps<'Rooms'>) {
   return (
     <SafeAreaView>
-      <XStack
-        mt={10}
-        mb={10}
-        alignItems="center"
-        justifyContent="space-between"
-        px={20}>
-        <H4 fontWeight={'bold'}>Rooms</H4>
-        <Button
-          size={'$2.5'}
-          onPress={() => navigation.navigate('CreateRoom')}
-          iconAfter={<Icon type="MaterialCommunity" name="plus" />}>
-          Add New
-        </Button>
-      </XStack>
+      <AppBar
+        title="Rooms"
+        action={
+          <Button onPress={() => navigation.navigate('CreateRoom')}>
+            Add New
+          </Button>
+        }
+      />
 
       <Container>
         <FlatGrid
