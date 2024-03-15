@@ -10,7 +10,7 @@ interface Props {
   title: string;
 }
 
-const AppBar = (props: Props) => {
+const AppHeader = (props: Props) => {
   const {title, action} = props;
   const navigation = useNavigation();
   return (
@@ -35,6 +35,6 @@ const AppBar = (props: Props) => {
   );
 };
 
-export default AppBar;
+export default AppHeader;
 
 const styles = StyleSheet.create({});

@@ -3,7 +3,7 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
 import {RoomCard} from '@/components/cards';
-import {AppBar, Container} from '@/components/layout';
+import {AppHeader, Container} from '@/components/layout';
 import {RoomNavProps} from '@/navigation/RoomNavigation';
 import {Button} from '@/ui';
 
@@ -33,7 +33,7 @@ const rooms = [
 export default function Rooms({navigation}: RoomNavProps<'Rooms'>) {
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title="Rooms"
         action={
           <Button onPress={() => navigation.navigate('CreateRoom')}>

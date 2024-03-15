@@ -1,4 +1,4 @@
-import {AppBar} from '@/components/layout';
+import {AppHeader} from '@/components/layout';
 import {Button} from '@/ui';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
@@ -11,7 +11,7 @@ export default function Devices(props: DeviceNavProps<'Devices'>) {
 
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title="Devices"
         action={
           <Button>

@@ -1,23 +1,21 @@
-import {XStack, YStack} from '@/ui';
+import {Text, XStack, YStack} from '@/ui';
 import React from 'react';
-import {Text} from 'react-native';
-import {Icon, IconType} from '../../utils/icons';
+import {Icon} from '../../utils/icons';
 
 type Props = {
   title: string;
   subtitle: string;
   iconName: string;
-  iconType: IconType;
 };
 
 export default function StatCard(props: Props) {
-  const {iconName, subtitle, title, iconType} = props;
+  const {iconName, subtitle, title} = props;
   return (
-    <XStack>
-      <Icon name={iconName} type={iconType} size={'xl'} />
+    <XStack style={{columnGap: 5}}>
+      <Icon name={iconName} type={'MaterialCommunity'} size={'xl'} />
       <YStack>
-        <Text>{title}</Text>
-        <Text>{subtitle}</Text>
+        <Text variant="bodyLarge">{title}</Text>
+        <Text variant="titleSmall">{subtitle}</Text>
       </YStack>
     </XStack>
   );

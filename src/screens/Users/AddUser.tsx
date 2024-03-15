@@ -1,5 +1,5 @@
 import {UserAddForm} from '@/components/forms/user';
-import {AppBar, Container} from '@/components/layout';
+import {AppHeader, Container} from '@/components/layout';
 import {UserNavProps} from '@/navigation/UserNavigation';
 import {Button} from '@/ui';
 import {MCIcon} from '@/utils/icons';
@@ -11,7 +11,7 @@ export default function AddUser(props: UserNavProps<'AddUser'>) {
 
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title={'Add User'}
         action={
           <Button>

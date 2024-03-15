@@ -3,7 +3,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {RoomCreateForm} from '../../components/forms/room';
 
-import {AppBar, Container} from '@/components/layout';
+import {AppHeader, Container} from '@/components/layout';
 import {RoomNavProps} from '../../navigation/RoomNavigation';
 import {MCIcon} from '../../utils/icons';
 
@@ -12,7 +12,7 @@ export default function CreateRoom(props: RoomNavProps<'CreateRoom'>) {
 
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title="Create Room"
         action={
           <Button>

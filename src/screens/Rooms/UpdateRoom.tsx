@@ -1,5 +1,5 @@
 import {RoomUpdateForm} from '@/components/forms/room';
-import {AppBar, Container} from '@/components/layout';
+import {AppHeader, Container} from '@/components/layout';
 import {RoomNavProps} from '@/navigation/RoomNavigation';
 import {Button} from '@/ui';
 import {MCIcon} from '@/utils/icons';
@@ -11,7 +11,7 @@ export default function UpdateRoom(props: RoomNavProps<'UpdateRoom'>) {
 
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title={'Update Room'}
         action={
           <Button

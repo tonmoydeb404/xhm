@@ -3,7 +3,7 @@ import {SafeAreaView} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
 import {DeviceCard} from '@/components/cards';
-import {AppBar, Container} from '@/components/layout';
+import {AppHeader, Container} from '@/components/layout';
 import {RoomNavProps} from '@/navigation/RoomNavigation';
 import {Button} from '@/ui';
 import {MCIcon} from '@/utils/icons';
@@ -38,7 +38,7 @@ const devices = [
 export default function Room({navigation, route}: RoomNavProps<'Room'>) {
   return (
     <SafeAreaView>
-      <AppBar
+      <AppHeader
         title={route.params.title}
         action={
           <Button onPress={() => navigation.navigate('UpdateRoom')}>

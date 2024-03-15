@@ -3,12 +3,12 @@ import {StyleSheet, View, ViewProps} from 'react-native';
 
 const XStack = (props: ViewProps) => {
   const {style, ...other} = props;
-  return <View style={{...styles.xstack, ...(style as object)}} {...other} />;
+  return <View style={[styles.xstack, style]} {...other} />;
 };
 
 const YStack = (props: ViewProps) => {
   const {style, ...other} = props;
-  return <View style={{...styles.ystack, ...(style as object)}} {...other} />;
+  return <View style={[styles.ystack, style]} {...other} />;
 };
 
 export {XStack, YStack};

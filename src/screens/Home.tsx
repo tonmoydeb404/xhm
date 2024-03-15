@@ -1,13 +1,12 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
-import {Button, Card} from '@/ui';
+import {Card, IconButton} from '@/ui';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
 import {AppNavProps} from '../navigation/AppNavigation';
-import {MCIcon} from '../utils/icons';
 
 const rooms = [
   {
@@ -32,6 +31,29 @@ const rooms = [
   },
 ];
 
+const stats = [
+  {
+    title: '23C',
+    subtitle: 'Temprature',
+    iconName: 'thermometer',
+  },
+  {
+    title: '35%',
+    subtitle: 'Humidity',
+    iconName: 'water-outline',
+  },
+  {
+    title: '70',
+    subtitle: 'Gas',
+    iconName: 'gas-cylinder',
+  },
+  {
+    title: 'Raining',
+    subtitle: 'Weather',
+    iconName: 'weather-cloudy',
+  },
+];
+
 export default function Home({navigation}: AppNavProps<'Home'>) {
   return (
     <SafeAreaView>
@@ -42,51 +64,36 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
           alignItems: 'center',
           justifyContent: 'space-between',
           marginTop: 10,
+          marginBottom: 10,
         }}>
-        <Button onPress={navigation.toggleDrawer}>
-          <MCIcon name="view-grid" size={'xl'} />
-        </Button>
+        <IconButton
+          icon={'view-grid'}
+          onPress={navigation.toggleDrawer}
+          size={28}
+        />
       </Container>
 
-      {/* Monitor Part */}
-      <Card
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginHorizontal: 20,
-          padding: 20,
-
-          borderRadius: 10,
-          marginTop: 30,
-          rowGap: 20,
-        }}>
-        <StatCard
-          title="23 C"
-          subtitle="Temprature"
-          iconName="temperature-three-quarters"
-          iconType="FontAwesome"
-        />
-        <StatCard
-          title="35%"
-          subtitle="Humidity"
-          iconName="water-outline"
-          iconType="Ion"
-        />
-        <StatCard
-          title="70"
-          subtitle="Gas"
-          iconName="gas-meter"
-          iconType="Material"
-        />
-        <StatCard
-          title="Raining"
-          subtitle="Weather"
-          iconName="weather-rainy"
-          iconType="MaterialCommunity"
-        />
-      </Card>
-
       <Container>
+        {/* Monitor Part */}
+        <Card style={styles.statContainer}>
+          <FlatGrid
+            data={stats}
+            fixed={false}
+            renderItem={({item}) => (
+              <StatCard
+                key={item.title}
+                iconName={item.iconName}
+                subtitle={item.subtitle}
+                title={item.title}
+              />
+            )}
+            maxItemsPerRow={2}
+            keyExtractor={item => item.title}
+            spacing={10}
+            style={{width: '100%'}}
+          />
+        </Card>
+
         <FlatGrid
           data={rooms}
           fixed={false}
@@ -107,10 +114,17 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
           )}
           maxItemsPerRow={2}
           keyExtractor={item => item.id}
-          spacing={8}
+          spacing={10}
           style={{width: '100%'}}
         />
       </Container>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  statContainer: {
+    padding: 2,
+    marginBottom: 10,
+  },
+});

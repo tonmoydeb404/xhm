@@ -1,6 +1,6 @@
-import {Button, Card, Switch, XStack, YStack} from '@/ui';
+import {Button, Card, Switch, Text, XStack, YStack} from '@/ui';
 import React, {useState} from 'react';
-import {Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {DeviceIcon, DeviceIconType, MCIcon} from '../../utils/icons';
 
 type Props = {
@@ -15,10 +15,10 @@ export default function DeviceCard(props: Props) {
   const [isOn, setIsOn] = useState(status === 'ON');
 
   return (
-    <Card style={{flex: 1}}>
+    <Card>
       <Card.Content>
         <XStack>
-          <YStack>
+          <YStack style={[styles.iconContainer]}>
             <DeviceIcon type={type} size={36} color={isOn ? '#fff' : '#000'} />
           </YStack>
 
@@ -28,9 +28,11 @@ export default function DeviceCard(props: Props) {
             </Button>
           )}
         </XStack>
-        <Text>{name}</Text>
-        <XStack>
-          <Text>{isOn ? 'ON' : 'OFF'}</Text>
+
+        <Text variant="titleMedium">{name}</Text>
+        <XStack style={[styles.switchContainer]}>
+          <Text variant="bodySmall">{isOn ? 'ON' : 'OFF'}</Text>
+
           <Switch
             value={isOn}
             trackColor={{false: '#ddd'}}
@@ -41,3 +43,14 @@ export default function DeviceCard(props: Props) {
     </Card>
   );
 }
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    backgroundColor: '#2F52E0',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 5,
+  },
+
+  switchContainer: {justifyContent: 'space-between', alignItems: 'center'},
+});

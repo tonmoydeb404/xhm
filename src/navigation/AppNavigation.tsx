@@ -1,12 +1,12 @@
 import {
-  BottomTabScreenProps,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import React from 'react';
+import {
+  MaterialBottomTabScreenProps,
+  createMaterialBottomTabNavigator,
+} from 'react-native-paper/react-navigation';
 import {MainNavProps} from '.';
 import Home from '../screens/Home';
 import {Icon} from '../utils/icons';
@@ -21,23 +21,23 @@ type ParamList = {
   AppUsers: NavigatorScreenParams<UserParamList>;
 };
 
-const Tab = createBottomTabNavigator<ParamList>();
+const Tab = createMaterialBottomTabNavigator<ParamList>();
 
 export type AppNavKeys = keyof ParamList;
 export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
-  BottomTabScreenProps<ParamList, k>,
+  MaterialBottomTabScreenProps<ParamList, k>,
   MainNavProps<'App'>
 >;
 
 export default function AppNavigation() {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarIcon: props => (
-            <Icon type="Ion" name="home-outline" {...props} />
+            <Icon type="MaterialCommunity" name="home" {...props} />
           ),
         }}
       />
@@ -46,7 +46,7 @@ export default function AppNavigation() {
         component={RoomNavigation}
         options={{
           tabBarIcon: props => (
-            <Icon type="FontAwesome" name="door-open" {...props} />
+            <Icon type="MaterialCommunity" name="door-open" {...props} />
           ),
           tabBarLabel: 'Rooms',
         }}
@@ -56,7 +56,7 @@ export default function AppNavigation() {
         component={DeviceNavigation}
         options={{
           tabBarIcon: props => (
-            <Icon type="Material" name="devices" {...props} />
+            <Icon type="MaterialCommunity" name="devices" {...props} />
           ),
           tabBarLabel: 'Devices',
         }}
@@ -66,7 +66,7 @@ export default function AppNavigation() {
         component={UserNavigation}
         options={{
           tabBarIcon: props => (
-            <Icon type="FontAwesome" name="users" {...props} />
+            <Icon type="MaterialCommunity" name="account-group" {...props} />
           ),
           tabBarLabel: 'Users',
         }}
