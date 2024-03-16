@@ -1,5 +1,5 @@
 import {UserCard} from '@/components/cards';
-import {AppHeader, Container} from '@/components/layout';
+import {Container, StackHeader} from '@/components/layout';
 import {UserNavProps} from '@/navigation/UserNavigation';
 import {Button} from '@/ui';
 import React from 'react';
@@ -10,7 +10,7 @@ export default function Users(props: UserNavProps<'Users'>) {
 
   return (
     <SafeAreaView>
-      <AppHeader
+      <StackHeader
         title={'Users'}
         action={
           <Button onPress={() => navigation.navigate('AddUser')}>Add</Button>

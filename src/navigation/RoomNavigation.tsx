@@ -1,3 +1,4 @@
+import {StackHeader} from '@/components/layout';
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Rooms from '../screens/Rooms';
@@ -23,12 +24,20 @@ export type RoomNavProps<k extends RoomNavKeys> = StackScreenProps<
 export default function RoomNavigation() {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{header: props => <StackHeader {...props} />}}
       initialRouteName="Rooms">
-      <Stack.Screen name="Rooms" component={Rooms} />
+      <Stack.Screen name="Rooms" options={{title: 'Rooms'}} component={Rooms} />
       <Stack.Screen name="Room" component={Room} />
-      <Stack.Screen name="CreateRoom" component={CreateRoom} />
-      <Stack.Screen name="UpdateRoom" component={UpdateRoom} />
+      <Stack.Screen
+        name="CreateRoom"
+        options={{title: 'Create Room'}}
+        component={CreateRoom}
+      />
+      <Stack.Screen
+        name="UpdateRoom"
+        options={{title: 'Update Room'}}
+        component={UpdateRoom}
+      />
     </Stack.Navigator>
   );
 }

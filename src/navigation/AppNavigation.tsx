@@ -3,6 +3,7 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import React from 'react';
+import {useTheme} from 'react-native-paper';
 import {
   MaterialBottomTabScreenProps,
   createMaterialBottomTabNavigator,
@@ -30,8 +31,13 @@ export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
 >;
 
 export default function AppNavigation() {
+  const theme = useTheme();
+
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor={theme.colors.onPrimaryContainer}
+      activeIndicatorStyle={{backgroundColor: theme.colors.primaryContainer}}>
       <Tab.Screen
         name="Home"
         component={Home}

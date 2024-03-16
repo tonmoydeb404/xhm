@@ -3,14 +3,14 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {DeviceUpdateForm} from '../../components/forms/device';
 
-import {AppHeader, Container} from '@/components/layout';
+import {Container, StackHeader} from '@/components/layout';
 import {DeviceNavProps} from '../../navigation/DeviceNavigation';
 import {MCIcon} from '../../utils/icons';
 
 export default function UpdateDevice(props: DeviceNavProps<'UpdateDevice'>) {
   return (
     <SafeAreaView>
-      <AppHeader
+      <StackHeader
         title="Update Device"
         action={
           <Button
