@@ -4,7 +4,7 @@ import {FlatGrid} from 'react-native-super-grid';
 
 import {DeviceCard} from '@/components/cards';
 import {Container} from '@/components/layout';
-import {RoomNavProps} from '@/navigation/RoomNavigation';
+import {RoomNavProps} from '@/navigation/app/RoomNavigation';
 
 const devices = [
   {

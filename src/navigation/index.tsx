@@ -1,32 +1,29 @@
-import {
-  DrawerScreenProps,
-  createDrawerNavigator,
-} from '@react-navigation/drawer';
+import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import ConnectHome from '../screens/Home/ConnectHome';
-import AppNavigation from './AppNavigation';
+import AppNavigation from './app';
+import AuthNavigation from './auth';
 
 export type MainParamList = {
   App: undefined;
-  ConnectHome: undefined;
+  Auth: undefined;
 };
 
-const Drawer = createDrawerNavigator<MainParamList>();
+const Stack = createStackNavigator<MainParamList>();
 
 export type MainNavKeys = keyof MainParamList;
-export type MainNavProps<k extends MainNavKeys> = DrawerScreenProps<
+export type MainNavProps<k extends MainNavKeys> = StackScreenProps<
   MainParamList,
   k
 >;
 
 export default function MainNavigation() {
   return (
-    <Drawer.Navigator
+    <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Drawer.Screen name="App" component={AppNavigation} />
-      <Drawer.Screen name="ConnectHome" component={ConnectHome} />
-    </Drawer.Navigator>
+      <Stack.Screen name="App" component={AppNavigation} />
+      <Stack.Screen name="Auth" component={AuthNavigation} />
+    </Stack.Navigator>
   );
 }

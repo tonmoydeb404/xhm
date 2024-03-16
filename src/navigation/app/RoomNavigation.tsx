@@ -1,10 +1,10 @@
 import {StackHeader} from '@/components/layout';
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import Rooms from '../screens/Rooms';
-import CreateRoom from '../screens/Rooms/CreateRoom';
-import Room from '../screens/Rooms/Room';
-import UpdateRoom from '../screens/Rooms/UpdateRoom';
+import Rooms from '../../screens/Rooms';
+import CreateRoom from '../../screens/Rooms/CreateRoom';
+import Room from '../../screens/Rooms/Room';
+import UpdateRoom from '../../screens/Rooms/UpdateRoom';
 
 export type RoomParamList = {
   Room: {title: string};

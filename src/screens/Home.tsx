@@ -6,7 +6,7 @@ import {Card, IconButton} from '@/ui';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
-import {AppNavProps} from '../navigation/AppNavigation';
+import {AppNavProps} from '../navigation/app/BottomNavigation';
 
 const rooms = [
   {

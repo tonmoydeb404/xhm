@@ -1,6 +1,6 @@
+import Auth from '@/screens/Auth';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import Auth from '../screens/Auth';
 
 type AuthStackParamList = {
   Login: undefined;

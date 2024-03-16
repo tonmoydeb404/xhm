@@ -1,7 +1,7 @@
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import Users from '../screens/Users';
-import AddUser from '../screens/Users/AddUser';
+import Users from '../../screens/Users';
+import AddUser from '../../screens/Users/AddUser';
 
 export type UserParamList = {
   Users: undefined;

@@ -1,7 +1,7 @@
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import Devices from '../screens/Devices';
-import UpdateDevice from '../screens/Devices/UpdateDevice';
+import Devices from '../../screens/Devices';
+import UpdateDevice from '../../screens/Devices/UpdateDevice';
 
 export type DeviceParamList = {
   Devices: undefined;

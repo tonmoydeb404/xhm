@@ -3,7 +3,7 @@ import {Button} from '@/ui';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import DeviceCard from '../../components/cards/DeviceCard';
-import {DeviceNavProps} from '../../navigation/DeviceNavigation';
+import {DeviceNavProps} from '../../navigation/app/DeviceNavigation';
 import {MCIcon} from '../../utils/icons';
 
 export default function Devices(props: DeviceNavProps<'Devices'>) {

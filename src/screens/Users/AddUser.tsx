@@ -1,6 +1,6 @@
 import {UserAddForm} from '@/components/forms/user';
 import {Container, StackHeader} from '@/components/layout';
-import {UserNavProps} from '@/navigation/UserNavigation';
+import {UserNavProps} from '@/navigation/app/UserNavigation';
 import {Button} from '@/ui';
 import {MCIcon} from '@/utils/icons';
 import React from 'react';

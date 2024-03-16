@@ -8,9 +8,9 @@ import {
   MaterialBottomTabScreenProps,
   createMaterialBottomTabNavigator,
 } from 'react-native-paper/react-navigation';
-import {MainNavProps} from '.';
-import Home from '../screens/Home';
-import {Icon} from '../utils/icons';
+import {MainNavProps} from '..';
+import Home from '../../screens/Home';
+import {Icon} from '../../utils/icons';
 import DeviceNavigation, {DeviceParamList} from './DeviceNavigation';
 import RoomNavigation, {RoomParamList} from './RoomNavigation';
 import UserNavigation, {UserParamList} from './UserNavigation';
@@ -30,7 +30,7 @@ export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
   MainNavProps<'App'>
 >;
 
-export default function AppNavigation() {
+export default function BottomNavigation() {
   const theme = useTheme();
 
   return (

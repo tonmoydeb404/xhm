@@ -1,6 +1,6 @@
 import {RoomUpdateForm} from '@/components/forms/room';
 import {Container} from '@/components/layout';
-import {RoomNavProps} from '@/navigation/RoomNavigation';
+import {RoomNavProps} from '@/navigation/app/RoomNavigation';
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
