@@ -1,3 +1,4 @@
+import useAuth from '@/hooks/contexts/useAuth';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -7,14 +8,12 @@ import {
 import React from 'react';
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
-  const {navigation} = props;
+  const {signOut} = useAuth();
+
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem
-        label={'Sign out'}
-        onPress={() => navigation.navigate('Auth')}
-      />
+      <DrawerItem label={'Sign out'} onPress={signOut} />
     </DrawerContentScrollView>
   );
 };

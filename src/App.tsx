@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 import MainNavigation from './navigation';
 import NavigationProvider from './providers/NavigationProvider';
+import ContextsProvider from './providers/contexts';
 
 export default function App() {
   // hide splash screen
@@ -14,10 +15,12 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <NavigationProvider>
-        <MainNavigation />
-      </NavigationProvider>
-    </ThemeProvider>
+    <ContextsProvider>
+      <ThemeProvider>
+        <NavigationProvider>
+          <MainNavigation />
+        </NavigationProvider>
+      </ThemeProvider>
+    </ContextsProvider>
   );
 }

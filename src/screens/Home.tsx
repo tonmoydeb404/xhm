@@ -2,11 +2,12 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
-import {Card, IconButton} from '@/ui';
+import useAuth from '@/hooks/contexts/useAuth';
+import {Avatar, Card, IconButton} from '@/ui';
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
-import {AppNavProps} from '../navigation/app/BottomNavigation';
+import {BottomNavProps} from '../navigation/app/BottomNavigation';
 
 const rooms = [
   {
@@ -54,7 +55,9 @@ const stats = [
   },
 ];
 
-export default function Home({navigation}: AppNavProps<'Home'>) {
+export default function Home({navigation}: BottomNavProps<'Home'>) {
+  const {profile} = useAuth();
+
   return (
     <SafeAreaView>
       {/* Header Part */}
@@ -71,6 +74,9 @@ export default function Home({navigation}: AppNavProps<'Home'>) {
           onPress={navigation.toggleDrawer}
           size={28}
         />
+        {profile?.avatar && (
+          <Avatar.Image size={40} source={{uri: profile?.avatar}} />
+        )}
       </Container>
 
       <Container>

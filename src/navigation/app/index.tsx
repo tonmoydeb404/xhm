@@ -4,20 +4,22 @@ import {
   DrawerScreenProps,
   createDrawerNavigator,
 } from '@react-navigation/drawer';
+import {CompositeScreenProps} from '@react-navigation/native';
 import React from 'react';
+import {MainNavProps} from '..';
 import BottomNavigation from './BottomNavigation';
 
-export type MainParamList = {
+export type ParamList = {
   AppHome: undefined;
   AppConnect: undefined;
 };
 
-const Drawer = createDrawerNavigator<MainParamList>();
+const Drawer = createDrawerNavigator<ParamList>();
 
-export type AppNavKeys = keyof MainParamList;
-export type AppNavProps<k extends AppNavKeys> = DrawerScreenProps<
-  MainParamList,
-  k
+export type AppNavKeys = keyof ParamList;
+export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
+  DrawerScreenProps<ParamList, k>,
+  MainNavProps<'App'>
 >;
 
 export default function AppNavigation() {

@@ -1,3 +1,4 @@
+import {AppNavProps} from '@/navigation/app';
 import {Button} from '@/ui';
 import React, {useEffect, useState} from 'react';
 import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
@@ -8,10 +9,9 @@ import {
   useCodeScanner,
 } from 'react-native-vision-camera';
 import {Container} from '../../components/layout';
-import {MainNavProps} from '../../navigation';
 import {MCIcon} from '../../utils/icons';
 
-export default function ConnectHome({navigation}: MainNavProps<'ConnectHome'>) {
+export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
   // app states
   const [active, setActive] = useState(true);
   const [torch, setTorch] = useState(false);

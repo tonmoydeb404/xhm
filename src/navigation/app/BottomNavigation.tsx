@@ -8,7 +8,7 @@ import {
   MaterialBottomTabScreenProps,
   createMaterialBottomTabNavigator,
 } from 'react-native-paper/react-navigation';
-import {MainNavProps} from '..';
+import {AppNavProps} from '.';
 import Home from '../../screens/Home';
 import {Icon} from '../../utils/icons';
 import DeviceNavigation, {DeviceParamList} from './DeviceNavigation';
@@ -24,10 +24,10 @@ type ParamList = {
 
 const Tab = createMaterialBottomTabNavigator<ParamList>();
 
-export type AppNavKeys = keyof ParamList;
-export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
+export type BottomNavKeys = keyof ParamList;
+export type BottomNavProps<k extends BottomNavKeys> = CompositeScreenProps<
   MaterialBottomTabScreenProps<ParamList, k>,
-  MainNavProps<'App'>
+  AppNavProps<'AppHome'>
 >;
 
 export default function BottomNavigation() {
