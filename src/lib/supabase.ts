@@ -1,20 +1,21 @@
+import envConfig from '@/config/env.config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createClient} from '@supabase/supabase-js';
 import {AppState} from 'react-native';
 import 'react-native-url-polyfill/auto';
 
-const supabaseUrl = 'https://rgrwravxgqwizbssbhjy.supabase.co';
-const supabaseAnonKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJncndyYXZ4Z3F3aXpic3NiaGp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDkwODc2MTcsImV4cCI6MjAyNDY2MzYxN30.gBMXl3c-TGGVDZwAynZStB6_OVSkm9njb-ECmM6kF08';
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    storage: AsyncStorage,
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: false,
+export const supabase = createClient(
+  envConfig.SUPABASE_URL,
+  envConfig.SUPABASE_ANON_KEY,
+  {
+    auth: {
+      storage: AsyncStorage,
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: false,
+    },
   },
-});
+);
 
 // Tells Supabase Auth to continuously refresh the session automatically
 // if the app is in the foreground. When this is added, you will continue

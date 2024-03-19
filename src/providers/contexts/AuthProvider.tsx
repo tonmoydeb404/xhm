@@ -1,4 +1,4 @@
-import {GoogleOAuthWebClientId} from '@/config/auth.config';
+import envConfig from '@/config/env.config';
 import AuthContext, {initialState} from '@/contexts/AuthContext';
 import {supabase} from '@/lib/supabase';
 import {Auth} from '@/types/auth.type';
@@ -19,7 +19,7 @@ import React, {
 // ----------------------------------------------------------------------
 
 GoogleSignin.configure({
-  webClientId: GoogleOAuthWebClientId,
+  webClientId: envConfig.GOOGLE_CLIENT_ID_WEB,
   scopes: ['https://www.googleapis.com/auth/drive.readonly'],
 });
 

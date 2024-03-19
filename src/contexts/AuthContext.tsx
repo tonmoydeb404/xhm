@@ -6,6 +6,8 @@ export const initialState: Auth = {
   profile: null,
   isAuthenticated: false,
   isLoading: true,
+  signInWithGoogle: (() => {}) as any,
+  signOut: (() => {}) as any,
 };
 
 const AuthContext = createContext(initialState);
