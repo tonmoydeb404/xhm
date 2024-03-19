@@ -1,5 +1,5 @@
 import {DrawerContent} from '@/components/layout';
-import ConnectHome from '@/screens/Home/ConnectHome';
+import ConnectHome from '@/screens/Connect/ConnectHome';
 import {
   DrawerScreenProps,
   createDrawerNavigator,

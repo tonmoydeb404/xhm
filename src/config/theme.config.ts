@@ -1,4 +1,6 @@
-import {MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
+import {MD3DarkTheme, MD3LightTheme, MD3Theme} from 'react-native-paper';
+
+type Theme = MD3Theme & {brand: typeof brandColors};
 
 const brandColors = {
   primary: '#E64A19',
@@ -63,10 +65,10 @@ const lightColors = {
   onWarningContainer: 'rgb(38, 26, 0)',
 };
 
-const light = {
+const light: Theme = {
   ...MD3LightTheme,
   brand: brandColors,
-  color: lightColors,
+  colors: lightColors,
 };
 
 // ----------------------------------------------------------------------
@@ -121,7 +123,7 @@ const darkColors = {
   onWarningContainer: 'rgb(255, 223, 158)',
 };
 
-const dark = {
+const dark: Theme = {
   ...MD3DarkTheme,
   brand: brandColors,
   colors: darkColors,

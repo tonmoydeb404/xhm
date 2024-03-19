@@ -1,7 +1,7 @@
 import {AppNavProps} from '@/navigation/app';
-import {Button} from '@/ui';
+import {Button, Text, YStack} from '@/ui';
 import React, {useEffect, useState} from 'react';
-import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Alert, SafeAreaView, StyleSheet, View} from 'react-native';
 import {
   Camera,
   useCameraDevice,
@@ -30,22 +30,35 @@ export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
     },
   });
 
-  useEffect(() => {
-    if (!hasPermission) {
-      requestPermission();
-    }
+  const handlePermission = async () => {
+    const res = await requestPermission();
 
+    console.log(res);
+  };
+
+  useEffect(() => {
     return () => {
       setActive(false);
       setTorch(false);
     };
-  }, [hasPermission]);
+  }, []);
 
   if (!hasPermission) {
     return (
-      <View>
-        <Text>No permission for camera</Text>
-      </View>
+      <SafeAreaView style={{flex: 1}}>
+        <YStack
+          style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+          <Text
+            variant="bodyLarge"
+            style={{marginBottom: 25, textAlign: 'center'}}>
+            No permission for camera to {'\n'} scan QR code
+          </Text>
+
+          <Button mode="contained" onPress={handlePermission}>
+            Allow Permission
+          </Button>
+        </YStack>
+      </SafeAreaView>
     );
   }
 

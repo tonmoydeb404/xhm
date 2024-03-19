@@ -1,8 +1,7 @@
+import {AppSplash} from '@/components/common';
 import useAuth from '@/hooks/contexts/useAuth';
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {Text} from 'react-native-paper';
 import AppNavigation from './app';
 import AuthNavigation from './auth';
 
@@ -23,11 +22,7 @@ export default function MainNavigation() {
   const {isAuthenticated, isLoading} = useAuth();
 
   if (isLoading) {
-    return (
-      <SafeAreaView>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    );
+    return <AppSplash />;
   }
 
   return (
