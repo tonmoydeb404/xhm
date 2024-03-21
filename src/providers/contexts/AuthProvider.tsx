@@ -1,7 +1,7 @@
 import envConfig from '@/config/env.config';
-import AuthContext, {initialState} from '@/contexts/AuthContext';
+import authContext, {initialState} from '@/contexts/authContext';
 import {supabase} from '@/lib/supabase';
-import {Auth} from '@/types/auth.type';
+import {AuthContext} from '@/types/auth.type';
 import {Profile} from '@/types/profile.type';
 import {
   GoogleSignin,
@@ -34,12 +34,14 @@ const AuthProvider = (props: Props) => {
   const {children} = props;
 
   // app state
-  const [user, setUser] = useState<Auth['user']>(initialState.user);
-  const [profile, setProfile] = useState<Auth['profile']>(initialState.profile);
+  const [user, setUser] = useState<AuthContext['user']>(initialState.user);
+  const [profile, setProfile] = useState<AuthContext['profile']>(
+    initialState.profile,
+  );
   const [isAuthenticated, setIsAuthenticated] = useState<
-    Auth['isAuthenticated']
+    AuthContext['isAuthenticated']
   >(initialState.isAuthenticated);
-  const [isLoading, setIsLoading] = useState<Auth['isLoading']>(
+  const [isLoading, setIsLoading] = useState<AuthContext['isLoading']>(
     initialState.isLoading,
   );
 
@@ -110,7 +112,7 @@ const AuthProvider = (props: Props) => {
   }, []);
 
   // memorized value c
-  const value: Auth = useMemo(
+  const value: AuthContext = useMemo(
     () => ({
       user,
       profile,
@@ -124,7 +126,7 @@ const AuthProvider = (props: Props) => {
     [user, profile, isAuthenticated, isLoading, signOut],
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <authContext.Provider value={value}>{children}</authContext.Provider>;
 };
 
 export default AuthProvider;

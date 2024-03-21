@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
 import AuthProvider from './AuthProvider';
+import HomeProvider from './HomeProvider';
 
 // ----------------------------------------------------------------------
 
@@ -10,7 +11,11 @@ type Props = {
 const ContextsProvider = (props: Props) => {
   const {children} = props;
 
-  return <AuthProvider>{children}</AuthProvider>;
+  return (
+    <AuthProvider>
+      <HomeProvider>{children}</HomeProvider>
+    </AuthProvider>
+  );
 };
 
 export default ContextsProvider;

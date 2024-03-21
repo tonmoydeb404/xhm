@@ -1,7 +1,7 @@
 import {User} from '@supabase/supabase-js';
 import {Profile} from './profile.type';
 
-export interface Auth {
+export interface AuthContext {
   user: User | null;
   profile: Profile | null;
   isAuthenticated: boolean;

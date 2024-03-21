@@ -1,7 +1,7 @@
-import {Auth} from '@/types/auth.type';
+import {AuthContext} from '@/types/auth.type';
 import {createContext} from 'react';
 
-export const initialState: Auth = {
+export const initialState: AuthContext = {
   user: null,
   profile: null,
   isAuthenticated: false,
@@ -10,6 +10,6 @@ export const initialState: Auth = {
   signOut: (() => {}) as any,
 };
 
-const AuthContext = createContext(initialState);
+const authContext = createContext(initialState);
 
-export default AuthContext;
+export default authContext;

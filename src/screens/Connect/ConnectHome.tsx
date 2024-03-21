@@ -1,9 +1,11 @@
+import useHome from '@/hooks/contexts/useHome';
 import {AppNavProps} from '@/navigation/app';
 import {Button, Text, YStack} from '@/ui';
-import React, {useEffect, useState} from 'react';
-import {Alert, SafeAreaView, StyleSheet, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {
   Camera,
+  CodeScanner,
   useCameraDevice,
   useCameraPermission,
   useCodeScanner,
@@ -12,30 +14,43 @@ import {Container} from '../../components/layout';
 import {MCIcon} from '../../utils/icons';
 
 export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
+  // context state
+  const {updateHomeId} = useHome();
+
   // app states
   const [active, setActive] = useState(true);
   const [torch, setTorch] = useState(false);
+
+  // handle qr code scan
+  const handleCodeScan: CodeScanner['onCodeScanned'] = useCallback(
+    codes => {
+      if (!active) return; // if camera not active then stop execution
+
+      updateHomeId(codes[0].value);
+
+      // reset state
+      setTorch(false);
+      setActive(false);
+    },
+    [active],
+  );
 
   // camera states
   const {hasPermission, requestPermission} = useCameraPermission();
   const device = useCameraDevice('back');
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13', 'code-128'],
-    onCodeScanned: codes => {
-      if (active) {
-        Alert.alert(`Scanned codes!`, `${codes[0].value}`);
-        setTorch(false);
-        setActive(false);
-      }
-    },
+    onCodeScanned: handleCodeScan,
   });
 
+  // handle permission
   const handlePermission = async () => {
     const res = await requestPermission();
 
     console.log(res);
   };
 
+  // reset state
   useEffect(() => {
     return () => {
       setActive(false);

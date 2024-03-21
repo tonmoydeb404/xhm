@@ -3,34 +3,13 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
 import useAuth from '@/hooks/contexts/useAuth';
-import {Avatar, Card, IconButton} from '@/ui';
+import useHome from '@/hooks/contexts/useHome';
+import {Avatar, Card, IconButton, Text} from '@/ui';
+
 import RoomCard from '../components/cards/RoomCard';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
 import {BottomNavProps} from '../navigation/app/BottomNavigation';
-
-const rooms = [
-  {
-    id: '1',
-    title: 'Living Room',
-    devices: 6,
-  },
-  {
-    id: '2',
-    title: 'Living Room',
-    devices: 6,
-  },
-  {
-    id: '3',
-    title: 'Living Room',
-    devices: 6,
-  },
-  {
-    id: '4',
-    title: 'Living Room',
-    devices: 6,
-  },
-];
 
 const stats = [
   {
@@ -57,6 +36,9 @@ const stats = [
 
 export default function Home({navigation}: BottomNavProps<'Home'>) {
   const {profile} = useAuth();
+  const {rooms, home, homeId, devices} = useHome();
+
+  console.log({home, devices});
 
   return (
     <SafeAreaView>
@@ -74,6 +56,7 @@ export default function Home({navigation}: BottomNavProps<'Home'>) {
           onPress={navigation.toggleDrawer}
           size={28}
         />
+        <Text variant="titleMedium">{home.data?.title}</Text>
         {profile?.avatar && (
           <Avatar.Image size={40} source={{uri: profile?.avatar}} />
         )}
@@ -100,29 +83,33 @@ export default function Home({navigation}: BottomNavProps<'Home'>) {
           />
         </Card>
 
-        <FlatGrid
-          data={rooms}
-          fixed={false}
-          renderItem={({item}) => (
-            <RoomCard
-              name={item.title}
-              devices={item.devices}
-              key={item.id}
-              color={'#2F52E0'}
-              containerProps={{
-                onPress: () =>
-                  navigation.navigate('AppRooms', {
-                    screen: 'Room',
-                    params: {title: item.title},
-                  }),
-              }}
-            />
-          )}
-          maxItemsPerRow={2}
-          keyExtractor={item => item.id}
-          spacing={10}
-          style={{width: '100%'}}
-        />
+        {rooms.isError && <Text>Rooms Error</Text>}
+        {rooms.isLoading && <Text>Rooms Loading...</Text>}
+        {!!rooms.data?.length && (
+          <FlatGrid
+            data={rooms.data}
+            fixed={false}
+            renderItem={({item}) => (
+              <RoomCard
+                name={item.title}
+                devices={0}
+                key={item.id}
+                color={'#2F52E0'}
+                containerProps={{
+                  onPress: () =>
+                    navigation.navigate('AppRooms', {
+                      screen: 'Room',
+                      params: {title: item.title},
+                    }),
+                }}
+              />
+            )}
+            maxItemsPerRow={2}
+            keyExtractor={item => item.id}
+            spacing={10}
+            style={{width: '100%'}}
+          />
+        )}
       </Container>
     </SafeAreaView>
   );

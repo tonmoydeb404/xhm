@@ -4,3 +4,9 @@ export interface Profile {
   avatar: string | null;
   fullName: string;
 }
+
+export interface UserMembers {
+  data: Profile[];
+  isLoading: boolean;
+  isError: boolean;
+}

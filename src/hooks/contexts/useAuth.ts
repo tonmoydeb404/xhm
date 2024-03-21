@@ -1,8 +1,8 @@
-import AuthContext from '@/contexts/AuthContext';
+import authContext from '@/contexts/authContext';
 import {useContext} from 'react';
 
 const useAuth = () => {
-  const value = useContext(AuthContext);
+  const value = useContext(authContext);
 
   if (value === undefined) {
     console.error('Auth Provider should wrap other components');
