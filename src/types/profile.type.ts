@@ -5,7 +5,7 @@ export interface Profile {
   fullName: string;
 }
 
-export interface UserMembers {
+export interface UseMembers {
   data: Profile[];
   isLoading: boolean;
   isError: boolean;

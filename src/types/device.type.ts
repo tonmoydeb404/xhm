@@ -2,7 +2,7 @@ export interface Device {
   id: string;
   title: string;
   type: string;
-  status: string;
+  status: 'OFF' | 'ON';
   roomId: null | string;
   homeId: string;
   createdAt: string;

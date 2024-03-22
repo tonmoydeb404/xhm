@@ -1,17 +1,17 @@
 import {Container} from '@/components/layout';
-import {DeviceList} from '@/components/lists';
+import {MemberList} from '@/components/lists';
 import useHome from '@/hooks/contexts/useHome';
+import {MemberNavProps} from '@/navigation/app/MemberNavigation';
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {DeviceNavProps} from '../../navigation/app/DeviceNavigation';
 
-export default function Devices(props: DeviceNavProps<'Devices'>) {
-  const {devices} = useHome();
+export default function Members(props: MemberNavProps<'Members'>) {
+  const {members} = useHome();
 
   return (
     <SafeAreaView>
       <Container>
-        <DeviceList {...devices} />
+        <MemberList {...members} />
       </Container>
     </SafeAreaView>
   );

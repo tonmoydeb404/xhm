@@ -1,11 +1,11 @@
-import {getDevices} from '@/lib/supabase/services';
-import {UseDevices} from '@/types/device.type';
+import {getRooms} from '@/lib/supabase/services';
+import {UseRooms} from '@/types/room.type';
 import {useEffect, useState} from 'react';
 
-const useDevices = (homeId: string | null): UseDevices => {
-  const [data, setData] = useState<UseDevices['data']>([]);
-  const [isLoading, setIsLoading] = useState<UseDevices['isLoading']>(true);
-  const [isError, setIsError] = useState<UseDevices['isError']>(false);
+const useRooms = (homeId: string | null | undefined): UseRooms => {
+  const [data, setData] = useState<UseRooms['data']>([]);
+  const [isLoading, setIsLoading] = useState<UseRooms['isLoading']>(true);
+  const [isError, setIsError] = useState<UseRooms['isError']>(false);
 
   const resetState = () => {
     setData([]);
@@ -23,7 +23,7 @@ const useDevices = (homeId: string | null): UseDevices => {
     // reset state
     resetState();
 
-    const response = await getDevices(homeId);
+    const response = await getRooms(homeId);
 
     // handle error state
     if (!!response?.error) {
@@ -50,4 +50,4 @@ const useDevices = (homeId: string | null): UseDevices => {
   return {data, isError, isLoading};
 };
 
-export default useDevices;
+export default useRooms;

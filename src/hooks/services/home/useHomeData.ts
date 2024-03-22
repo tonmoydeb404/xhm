@@ -13,6 +13,12 @@ const useHomeData = (homeId: string | null): UseHome => {
     setIsError(false);
   };
 
+  const emptyState = () => {
+    setData(undefined);
+    setIsLoading(false);
+    setIsError(false);
+  };
+
   const fetchData = async (id: string) => {
     // reset state
     resetState();
@@ -39,7 +45,7 @@ const useHomeData = (homeId: string | null): UseHome => {
     if (homeId) {
       fetchData(homeId);
     } else {
-      resetState();
+      emptyState();
     }
   }, [homeId]);
 

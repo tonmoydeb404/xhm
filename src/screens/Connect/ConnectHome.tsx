@@ -1,6 +1,13 @@
+import {
+  ConnectHomeErrorDialog,
+  ConnectHomeSuccessDialog,
+} from '@/components/dialogs';
+import {LoadingState} from '@/components/states';
+import {useBoolean} from '@/hooks/common';
 import useHome from '@/hooks/contexts/useHome';
+import {getHome} from '@/lib/supabase/services';
 import {AppNavProps} from '@/navigation/app';
-import {Button, Text, YStack} from '@/ui';
+import {Button, IconButton, Text, YStack} from '@/ui';
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {
@@ -11,7 +18,6 @@ import {
   useCodeScanner,
 } from 'react-native-vision-camera';
 import {Container} from '../../components/layout';
-import {MCIcon} from '../../utils/icons';
 
 export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
   // context state
@@ -21,16 +27,36 @@ export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
   const [active, setActive] = useState(true);
   const [torch, setTorch] = useState(false);
 
+  // dialog state
+  const successDialog = useBoolean();
+  const errorDialog = useBoolean();
+
   // handle qr code scan
   const handleCodeScan: CodeScanner['onCodeScanned'] = useCallback(
-    codes => {
-      if (!active) return; // if camera not active then stop execution
+    async codes => {
+      if (!active || !codes[0]?.value) return; // if camera not active then stop execution
 
-      updateHomeId(codes[0].value);
+      const response = await getHome(codes[0].value);
 
-      // reset state
-      setTorch(false);
-      setActive(false);
+      // error state
+      if (!!response?.error) {
+        errorDialog.setTrue();
+
+        // reset state
+        setTorch(false);
+        setActive(false);
+        return;
+      }
+
+      // success state
+      if (!!response.data) {
+        updateHomeId(codes[0].value);
+        successDialog.setTrue();
+
+        // reset state
+        setTorch(false);
+        setActive(false);
+      }
     },
     [active],
   );
@@ -89,9 +115,11 @@ export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
     return (
       <SafeAreaView style={{flex: 1}}>
         <Container style={{flexDirection: 'row', marginTop: 10}}>
-          <Button onPress={() => navigation.goBack()}>
-            <MCIcon name="keyboard-backspace" size={'xl'} />
-          </Button>
+          <IconButton
+            size={32}
+            icon={'keyboard-backspace'}
+            onPress={() => navigation.goBack()}
+          />
         </Container>
         <View
           style={{
@@ -136,13 +164,17 @@ export default function ConnectHome({navigation}: AppNavProps<'AppConnect'>) {
             )}
           </View>
         </View>
+        <ConnectHomeSuccessDialog
+          open={successDialog.value}
+          onClose={successDialog.setFalse}
+        />
+        <ConnectHomeErrorDialog
+          open={errorDialog.value}
+          onClose={errorDialog.setFalse}
+        />
       </SafeAreaView>
     );
   }
 
-  return (
-    <View>
-      <Text>Loading</Text>
-    </View>
-  );
+  return <LoadingState />;
 }

@@ -9,16 +9,16 @@ import React from 'react';
 import {MainNavProps} from '..';
 import BottomNavigation from './BottomNavigation';
 
-export type ParamList = {
+export type AppParamList = {
   AppHome: undefined;
   AppConnect: undefined;
 };
 
-const Drawer = createDrawerNavigator<ParamList>();
+const Drawer = createDrawerNavigator<AppParamList>();
 
-export type AppNavKeys = keyof ParamList;
+export type AppNavKeys = keyof AppParamList;
 export type AppNavProps<k extends AppNavKeys> = CompositeScreenProps<
-  DrawerScreenProps<ParamList, k>,
+  DrawerScreenProps<AppParamList, k>,
   MainNavProps<'App'>
 >;
 

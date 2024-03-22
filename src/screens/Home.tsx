@@ -6,7 +6,7 @@ import useAuth from '@/hooks/contexts/useAuth';
 import useHome from '@/hooks/contexts/useHome';
 import {Avatar, Card, IconButton, Text} from '@/ui';
 
-import RoomCard from '../components/cards/RoomCard';
+import {RoomList} from '@/components/lists';
 import StatCard from '../components/cards/StatCard';
 import {Container} from '../components/layout';
 import {BottomNavProps} from '../navigation/app/BottomNavigation';
@@ -36,9 +36,7 @@ const stats = [
 
 export default function Home({navigation}: BottomNavProps<'Home'>) {
   const {profile} = useAuth();
-  const {rooms, home, homeId, devices} = useHome();
-
-  console.log({home, devices});
+  const {rooms, home} = useHome();
 
   return (
     <SafeAreaView>
@@ -83,33 +81,7 @@ export default function Home({navigation}: BottomNavProps<'Home'>) {
           />
         </Card>
 
-        {rooms.isError && <Text>Rooms Error</Text>}
-        {rooms.isLoading && <Text>Rooms Loading...</Text>}
-        {!!rooms.data?.length && (
-          <FlatGrid
-            data={rooms.data}
-            fixed={false}
-            renderItem={({item}) => (
-              <RoomCard
-                name={item.title}
-                devices={0}
-                key={item.id}
-                color={'#2F52E0'}
-                containerProps={{
-                  onPress: () =>
-                    navigation.navigate('AppRooms', {
-                      screen: 'Room',
-                      params: {title: item.title},
-                    }),
-                }}
-              />
-            )}
-            maxItemsPerRow={2}
-            keyExtractor={item => item.id}
-            spacing={10}
-            style={{width: '100%'}}
-          />
-        )}
+        <RoomList {...rooms} />
       </Container>
     </SafeAreaView>
   );

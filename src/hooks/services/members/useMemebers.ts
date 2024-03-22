@@ -1,11 +1,11 @@
-import {getDevices} from '@/lib/supabase/services';
-import {UseDevices} from '@/types/device.type';
+import {getProfiles} from '@/lib/supabase/services';
+import {UseMembers} from '@/types/profile.type';
 import {useEffect, useState} from 'react';
 
-const useDevices = (homeId: string | null): UseDevices => {
-  const [data, setData] = useState<UseDevices['data']>([]);
-  const [isLoading, setIsLoading] = useState<UseDevices['isLoading']>(true);
-  const [isError, setIsError] = useState<UseDevices['isError']>(false);
+const useMembers = (membersId: string[] | undefined): UseMembers => {
+  const [data, setData] = useState<UseMembers['data']>([]);
+  const [isLoading, setIsLoading] = useState<UseMembers['isLoading']>(true);
+  const [isError, setIsError] = useState<UseMembers['isError']>(false);
 
   const resetState = () => {
     setData([]);
@@ -19,11 +19,11 @@ const useDevices = (homeId: string | null): UseDevices => {
     setIsError(false);
   };
 
-  const fetchData = async (homeId: string) => {
+  const fetchData = async (membersId: string[]) => {
     // reset state
     resetState();
 
-    const response = await getDevices(homeId);
+    const response = await getProfiles(membersId);
 
     // handle error state
     if (!!response?.error) {
@@ -32,6 +32,7 @@ const useDevices = (homeId: string | null): UseDevices => {
       return;
     }
 
+    // success state
     if (Array.isArray(response?.data)) {
       setData(response.data);
       setIsLoading(false);
@@ -40,14 +41,14 @@ const useDevices = (homeId: string | null): UseDevices => {
 
   // fetch data on house id change
   useEffect(() => {
-    if (homeId) {
-      fetchData(homeId);
+    if (membersId?.length) {
+      fetchData(membersId);
     } else {
       emptyState();
     }
-  }, [homeId]);
+  }, [membersId]);
 
   return {data, isError, isLoading};
 };
 
-export default useDevices;
+export default useMembers;

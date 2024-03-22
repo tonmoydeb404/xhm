@@ -1,5 +1,5 @@
 import {UseDevices} from './device.type';
-import {UserMembers} from './profile.type';
+import {UseMembers} from './profile.type';
 import {UseRooms} from './room.type';
 
 export interface Home {
@@ -19,7 +19,7 @@ export interface UseHome {
 export interface HomeContext {
   homeId: string | null;
   home: UseHome;
-  members: UserMembers;
+  members: UseMembers;
   devices: UseDevices;
   rooms: UseRooms;
 

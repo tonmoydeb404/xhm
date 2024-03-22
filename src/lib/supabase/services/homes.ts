@@ -6,9 +6,9 @@ import {tables} from '../config';
 export const getHome = asyncWrapper(async (id: string) => {
   const {data, error} = await supabase
     .from(tables.HOMES)
-    .upsert({id, title: 'My Home'})
     .select('*')
-    .single();
+    .eq('id', id)
+    .maybeSingle();
 
   if (error) throw new Error(error.message);
 

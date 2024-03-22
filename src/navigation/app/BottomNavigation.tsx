@@ -12,21 +12,21 @@ import {AppNavProps} from '.';
 import Home from '../../screens/Home';
 import {Icon} from '../../utils/icons';
 import DeviceNavigation, {DeviceParamList} from './DeviceNavigation';
+import MemberNavigation, {MemberParamList} from './MemberNavigation';
 import RoomNavigation, {RoomParamList} from './RoomNavigation';
-import UserNavigation, {UserParamList} from './UserNavigation';
 
-type ParamList = {
+export type BottomNavParamList = {
   Home: undefined;
   AppRooms: NavigatorScreenParams<RoomParamList>;
   AppDevices: NavigatorScreenParams<DeviceParamList>;
-  AppUsers: NavigatorScreenParams<UserParamList>;
+  AppMembers: NavigatorScreenParams<MemberParamList>;
 };
 
-const Tab = createMaterialBottomTabNavigator<ParamList>();
+const Tab = createMaterialBottomTabNavigator<BottomNavParamList>();
 
-export type BottomNavKeys = keyof ParamList;
+export type BottomNavKeys = keyof BottomNavParamList;
 export type BottomNavProps<k extends BottomNavKeys> = CompositeScreenProps<
-  MaterialBottomTabScreenProps<ParamList, k>,
+  MaterialBottomTabScreenProps<BottomNavParamList, k>,
   AppNavProps<'AppHome'>
 >;
 
@@ -68,8 +68,8 @@ export default function BottomNavigation() {
         }}
       />
       <Tab.Screen
-        name="AppUsers"
-        component={UserNavigation}
+        name="AppMembers"
+        component={MemberNavigation}
         options={{
           tabBarIcon: props => (
             <Icon type="MaterialCommunity" name="account-group" {...props} />

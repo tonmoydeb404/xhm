@@ -1,3 +1,4 @@
+import {StackHeader} from '@/components/layout';
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Devices from '../../screens/Devices';
@@ -18,9 +19,18 @@ export type DeviceNavProps<k extends DeviceNavKeys> = StackScreenProps<
 
 export default function DeviceNavigation() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Devices" component={Devices} />
-      <Stack.Screen name="UpdateDevice" component={UpdateDevice} />
+    <Stack.Navigator
+      screenOptions={{header: props => <StackHeader {...props} />}}>
+      <Stack.Screen
+        options={{title: 'Devices'}}
+        name="Devices"
+        component={Devices}
+      />
+      <Stack.Screen
+        options={{title: 'Update Device'}}
+        name="UpdateDevice"
+        component={UpdateDevice}
+      />
     </Stack.Navigator>
   );
 }
