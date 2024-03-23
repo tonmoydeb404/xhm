@@ -6,8 +6,11 @@ const asyncWrapper =
     try {
       const data = await func(...props);
       return {data, error: false};
-    } catch (error) {
-      return {error, data: undefined};
+    } catch (error: any) {
+      return {
+        error: (error?.message as string) || 'Something went to wrong.',
+        data: undefined,
+      };
     }
   };
 

@@ -1,4 +1,6 @@
 import {StackHeader} from '@/components/layout';
+import {Button} from '@/ui';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {StackScreenProps, createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Rooms from '../../screens/Rooms';
@@ -7,10 +9,10 @@ import Room from '../../screens/Rooms/Room';
 import UpdateRoom from '../../screens/Rooms/UpdateRoom';
 
 export type RoomParamList = {
-  Room: {title: string};
+  Room: {id: string};
   Rooms: undefined;
   CreateRoom: undefined;
-  UpdateRoom: undefined;
+  UpdateRoom: {id: string};
 };
 
 const Stack = createStackNavigator<RoomParamList>();
@@ -22,12 +24,33 @@ export type RoomNavProps<k extends RoomNavKeys> = StackScreenProps<
 >;
 
 export default function RoomNavigation() {
+  const navigation = useNavigation<NavigationProp<RoomParamList>>();
+
   return (
     <Stack.Navigator
       screenOptions={{header: props => <StackHeader {...props} />}}
       initialRouteName="Rooms">
-      <Stack.Screen name="Rooms" options={{title: 'Rooms'}} component={Rooms} />
-      <Stack.Screen name="Room" component={Room} />
+      <Stack.Screen
+        name="Rooms"
+        options={{
+          title: 'Rooms',
+          headerRight: props => (
+            <Button
+              {...props}
+              onPress={() => navigation.navigate('CreateRoom')}>
+              Create
+            </Button>
+          ),
+        }}
+        component={Rooms}
+      />
+      <Stack.Screen
+        name="Room"
+        options={{
+          headerRight: props => <Button {...props}>Edit</Button>,
+        }}
+        component={Room}
+      />
       <Stack.Screen
         name="CreateRoom"
         options={{title: 'Create Room'}}

@@ -3,13 +3,13 @@ import {StackHeaderProps} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-const StackHeader = ({back, navigation, options, route}: StackHeaderProps) => {
+const StackHeader = (props: StackHeaderProps) => {
+  const {back, navigation, options, route} = props;
   return (
     <Appbar.Header>
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content
-        title={(route?.params as {title?: string})?.title || options?.title}
-      />
+      <Appbar.Content title={options?.title} />
+      {options?.headerRight && options.headerRight({})}
     </Appbar.Header>
   );
 };

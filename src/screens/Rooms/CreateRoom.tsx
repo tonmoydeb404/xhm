@@ -9,9 +9,9 @@ export default function CreateRoom(props: RoomNavProps<'CreateRoom'>) {
   const {navigation} = props;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{marginTop: 20}}>
       <Container>
-        <RoomCreateForm />
+        <RoomCreateForm onSuccess={() => navigation.navigate('Rooms')} />
       </Container>
     </SafeAreaView>
   );

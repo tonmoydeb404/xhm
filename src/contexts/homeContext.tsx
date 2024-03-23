@@ -24,7 +24,8 @@ export const initialState: HomeContext = {
     isLoading: true,
   },
 
-  updateHomeId: id => {},
+  updateHomeId: (() => {}) as any,
+  getRoom: (() => {}) as any,
 };
 
 const homeContext = createContext(initialState);

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 
 import {DeviceCard} from '@/components/cards';
 import {Container} from '@/components/layout';
+import useHome from '@/hooks/contexts/useHome';
 import {RoomNavProps} from '@/navigation/app/RoomNavigation';
+import {Button} from '@/ui';
 
 const devices = [
   {
@@ -34,6 +36,26 @@ const devices = [
 ];
 
 export default function Room({navigation, route}: RoomNavProps<'Room'>) {
+  // context state
+  const {getRoom} = useHome();
+  const room = getRoom(route.params.id);
+
+  // update header nav
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: props => (
+        <Button
+          {...props}
+          onPress={() =>
+            navigation.navigate('UpdateRoom', {id: route.params.id})
+          }>
+          Edit
+        </Button>
+      ),
+      title: room?.title,
+    });
+  }, [route.params.id, room?.title]);
+
   return (
     <SafeAreaView>
       <Container>

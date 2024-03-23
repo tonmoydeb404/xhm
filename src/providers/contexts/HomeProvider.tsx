@@ -74,6 +74,18 @@ const HomeProvider = (props: Props) => {
     }
   }, []);
 
+  // get room by id
+  const getRoom = useCallback(
+    (id: string) => {
+      if (rooms.isLoading || rooms.isError || !Array.isArray(rooms.data))
+        return undefined;
+      if (!id) return undefined;
+
+      return rooms.data.find(r => r.id === id);
+    },
+    [rooms?.isLoading, rooms?.isError, rooms?.data],
+  );
+
   // memorized value
   const value: HomeContext = useMemo(
     () => ({
@@ -85,8 +97,9 @@ const HomeProvider = (props: Props) => {
 
       // actions
       updateHomeId,
+      getRoom,
     }),
-    [home, devices, homeId, updateHomeId],
+    [home, devices, homeId, updateHomeId, getRoom],
   );
 
   // get initial id

@@ -29,7 +29,7 @@ const RoomList = (props: Props) => {
               key={item.id}
               color={'#2F52E0'}
               containerProps={{
-                onPress: () => navigation.navigate('Room', {title: item.title}),
+                onPress: () => navigation.navigate('Room', {id: item.id}),
               }}
             />
           )}

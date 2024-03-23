@@ -1,6 +1,6 @@
 import {UseDevices} from './device.type';
 import {UseMembers} from './profile.type';
-import {UseRooms} from './room.type';
+import {Room, UseRooms} from './room.type';
 
 export interface Home {
   id: string;
@@ -26,6 +26,7 @@ export interface HomeContext {
   // actions
 
   updateHomeId: (id: string | null | undefined) => void;
+  getRoom: (id: string) => Room | undefined;
 }
 
 export type HomeUpdates = Partial<Pick<Home, 'title'>>;

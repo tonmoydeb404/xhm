@@ -29,7 +29,7 @@ export const updateRoom = asyncWrapper(
   },
 );
 
-export const CreateRoom = asyncWrapper(async (createData: RoomCreate) => {
+export const createRoom = asyncWrapper(async (createData: RoomCreate) => {
   const {data, error} = await supabase
     .from(tables.ROOMS)
     .insert(createData)
