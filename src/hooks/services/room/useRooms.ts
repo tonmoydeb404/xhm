@@ -1,11 +1,13 @@
 import {getRooms} from '@/lib/supabase/services';
 import {UseRooms} from '@/types/room.type';
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 const useRooms = (homeId: string | null | undefined): UseRooms => {
   const [data, setData] = useState<UseRooms['data']>([]);
   const [isLoading, setIsLoading] = useState<UseRooms['isLoading']>(true);
   const [isError, setIsError] = useState<UseRooms['isError']>(false);
+
+  // ACTIONS ----------------------------------------------------------------------
 
   const resetState = () => {
     setData([]);
@@ -38,6 +40,27 @@ const useRooms = (homeId: string | null | undefined): UseRooms => {
     }
   };
 
+  const insert = useCallback<UseRooms['insert']>(room => {
+    setData(prev => {
+      const prevData = [...prev];
+      prevData.push(room);
+      return prevData;
+    });
+  }, []);
+
+  const update = useCallback<UseRooms['update']>((id, updates) => {
+    setData(prev => {
+      const prevData = [...prev];
+
+      const updateIndex = prevData.findIndex(p => p.id === id);
+
+      if (updateIndex === -1) return prevData;
+
+      prevData[updateIndex] = {...prev[updateIndex], ...updates};
+      return prevData;
+    });
+  }, []);
+
   // fetch data on house id change
   useEffect(() => {
     if (homeId) {
@@ -47,7 +70,7 @@ const useRooms = (homeId: string | null | undefined): UseRooms => {
     }
   }, [homeId]);
 
-  return {data, isError, isLoading};
+  return {data, isError, isLoading, insert, update};
 };
 
 export default useRooms;

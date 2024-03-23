@@ -6,6 +6,7 @@ import {useCreateRoom} from '@/hooks/services/room';
 import {RoomCreate} from '@/types/room.type';
 import {Button, YStack} from '@/ui';
 import {RHFInput, RHFProvider} from '../../common/rhf';
+import DeviceOptions from '../common/DeviceOptions';
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ export default function RoomCreateForm(props: Props) {
     () => ({
       title: '',
       homeId: home?.data?.id || '',
+      devices: [],
     }),
     [home?.data?.id],
   );
@@ -55,11 +57,14 @@ export default function RoomCreateForm(props: Props) {
 
   return (
     <RHFProvider methods={methods}>
-      <YStack>
+      <YStack style={{rowGap: 15}}>
         <RHFInput
           name="title"
           inputProps={{label: 'Room Title', mode: 'outlined'}}
         />
+
+        <DeviceOptions label="Devices" name="devices" />
+
         <Button
           style={{marginTop: 30}}
           mode="contained"

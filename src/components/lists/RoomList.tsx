@@ -25,7 +25,7 @@ const RoomList = (props: Props) => {
           renderItem={({item}) => (
             <RoomCard
               name={item.title}
-              devices={0}
+              devices={item.devices?.length || 0}
               key={item.id}
               color={'#2F52E0'}
               containerProps={{

@@ -3,7 +3,6 @@ export interface Device {
   title: string;
   type: string;
   status: 'OFF' | 'ON';
-  roomId: null | string;
   homeId: string;
   createdAt: string;
 }
@@ -14,6 +13,4 @@ export interface UseDevices {
   isError: boolean;
 }
 
-export type DeviceUpdates = Partial<
-  Pick<Device, 'roomId' | 'status' | 'title' | 'type'>
->;
+export type DeviceUpdates = Partial<Pick<Device, 'status' | 'title' | 'type'>>;

@@ -4,6 +4,7 @@ import {Button, YStack} from '@/ui';
 import React, {useCallback, useEffect, useMemo} from 'react';
 import {useForm} from 'react-hook-form';
 import {RHFInput, RHFProvider} from '../../common/rhf';
+import DeviceOptions from '../common/DeviceOptions';
 
 // ----------------------------------------------------------------------
 
@@ -24,12 +25,12 @@ export default function RoomUpdateForm(props: Props) {
   const defaultValues = useMemo<RoomUpdate>(
     () => ({
       title: room?.title || '',
+      devices: room?.devices || [],
     }),
     [room?.title],
   );
   const methods = useForm();
   const {formState, handleSubmit, reset} = methods;
-  const {isSubmitting} = formState;
 
   // handle update room
   const handleUpdateRoom = useCallback(
@@ -51,11 +52,14 @@ export default function RoomUpdateForm(props: Props) {
 
   return (
     <RHFProvider methods={methods}>
-      <YStack>
+      <YStack style={{rowGap: 15}}>
         <RHFInput
           name="title"
           inputProps={{label: 'Room Title', mode: 'outlined'}}
         />
+
+        <DeviceOptions label="Devices" name="devices" />
+
         <Button
           style={{marginTop: 30}}
           mode="contained"

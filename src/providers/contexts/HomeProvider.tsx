@@ -3,10 +3,18 @@ import {useDevices} from '@/hooks/services/device';
 import {useHomeData} from '@/hooks/services/home';
 import {useMembers} from '@/hooks/services/members';
 import {useRooms} from '@/hooks/services/room';
+import {supabase} from '@/lib/supabase';
+import {tables} from '@/lib/supabase/config';
 import {getHome} from '@/lib/supabase/services';
 
 import {HomeContext} from '@/types/home.type';
+import {Room} from '@/types/room.type';
+import log from '@/utils/log';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  RealtimePostgresInsertPayload,
+  RealtimePostgresUpdatePayload,
+} from '@supabase/supabase-js';
 import React, {
   ReactNode,
   useCallback,
@@ -86,6 +94,60 @@ const HomeProvider = (props: Props) => {
     [rooms?.isLoading, rooms?.isError, rooms?.data],
   );
 
+  // handle new room insert
+  const handleRoomInsert = useCallback(
+    (payload: RealtimePostgresInsertPayload<Room>) => {
+      const newRoom = payload.new;
+
+      if (!newRoom || !!payload.errors?.length) return;
+
+      rooms.insert(newRoom);
+    },
+    [rooms.insert],
+  );
+
+  // handle room update
+  const handleRoomUpdate = useCallback(
+    (payload: RealtimePostgresUpdatePayload<Room>) => {
+      const updatedRoom = payload.new;
+
+      if (!updatedRoom || !!payload.errors?.length) return;
+
+      rooms.update(updatedRoom.id, updatedRoom);
+    },
+    [rooms.update],
+  );
+
+  // Effect ----------------------------------------------------------------------
+
+  // get initial id
+  useEffect(() => {
+    initialHomeId();
+  }, []);
+
+  // realtime updates feature
+  useEffect(() => {
+    const channel = supabase
+      .channel('XHM-APP')
+      .on(
+        'postgres_changes',
+        {event: 'INSERT', schema: 'public', table: tables.ROOMS},
+        handleRoomInsert,
+      )
+      .on(
+        'postgres_changes',
+        {event: 'UPDATE', schema: 'public', table: tables.ROOMS},
+        handleRoomUpdate,
+      )
+      .subscribe((status, error) => {
+        log.info('Realtime: ', {status, error});
+      });
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [handleRoomInsert, handleRoomUpdate]);
+
   // memorized value
   const value: HomeContext = useMemo(
     () => ({
@@ -101,11 +163,6 @@ const HomeProvider = (props: Props) => {
     }),
     [home, devices, homeId, updateHomeId, getRoom],
   );
-
-  // get initial id
-  useEffect(() => {
-    initialHomeId();
-  }, []);
 
   return <homeContext.Provider value={value}>{children}</homeContext.Provider>;
 };
